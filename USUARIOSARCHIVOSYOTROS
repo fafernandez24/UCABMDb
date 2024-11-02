@@ -5,8 +5,6 @@ struct usuarios {
     string nombre_de_usuario;
     int edad;
     string nacionalidad;
-    usuarios *prx;
-    usuarios *prev;
 }
 
 
@@ -62,7 +60,20 @@ void usuarios_por_archivo(usuarios **p) {
 
 
 
-bool lista_vacia_usuario(usuarios *p){
+bool lista_vacia_usuarios(usuarios *p){
     if(p) return false;
     return true;
 }
+
+
+
+///void imprimir_los_usuarios(usuarios *p){
+    usuarios *impus = p;
+    cout << setw(10) << //////
+
+
+
+void imprimir_usuario(usuarios*p){
+    usuarios *current = p;
+
+
