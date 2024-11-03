@@ -8,6 +8,12 @@ using namespace std;
 
 int main(){
 
+  Movie *movie_list = NULL;
+  Users *users_list = NULL;
+
+  readMoviesFile(&movie_list);
+  readUsersFile(&users_list);
+
   int main_option = -1;
   while (main_option != 0){
     main_option = mainMenu();
@@ -15,7 +21,7 @@ int main(){
     switch(main_option){
       case 1: // DESPLEGAR MENU DE PELICULAS
       {
-        Movie *movie_list = NULL;
+        
         int movie_option = -1;
 
         while (movie_option != 0){
@@ -45,6 +51,7 @@ int main(){
               cout << "========================================\n";
 
               addMovie(&movie_list, movie_name, movie_premiere, movie_type, movie_time);
+              addMovieToFile(movie_name, movie_premiere, movie_type, movie_time);
               break;
             }
             case 3: // ELIMINAR PELICULA
@@ -60,6 +67,20 @@ int main(){
               deleteMovie(&movie_list, movie_name);
               break;
             }
+            case 4:
+            {
+              string movie_name;
+              string quali_question; 
+              cout << "========================================\n";
+              cout << "              SEARCH MOVIE              \n";
+              cout << "========================================\n";
+              cout << "\tNombre: ";
+              cin >> movie_name;
+              cout << "========================================\n";
+              searchMovie(movie_list, movie_name);
+              break;
+            }
+
             default:
             {
               if (movie_option == 0)
@@ -80,7 +101,7 @@ int main(){
       }
       case 3:
       {
-        Users *users_list = NULL;
+        
         int users_option = -1;
 
         while (users_option != 0){
@@ -108,6 +129,7 @@ int main(){
               cout << "========================================\n";
 
               addUsers(&users_list, email, years_old, country);
+              addUserToFile(email, years_old, country);
               break;
             }
             case 3: // ELIMINAR PELICULA
@@ -134,6 +156,11 @@ int main(){
         main_option = -1;
         break;
         break;
+      }
+
+      case 4:
+      {
+        /* BUSCAR USUARIOS */
       }
       default:
       {
