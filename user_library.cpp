@@ -10,7 +10,7 @@ bool validateEmail(const string &email) {
 }
 
 void saveUsers(User *head) {
-    ofstream file("usuarios.txt");
+    ofstream file("users.txt");
     User *current = head;
     while (current != NULL) {
         file << current->email << "\t"
@@ -23,7 +23,7 @@ void saveUsers(User *head) {
 }
 
 void displayUsers() {
-    ifstream file("usuarios.txt");
+    ifstream file("users.txt");
     string line;
     while (getline(file, line)) {
         cout << line << endl;
@@ -32,7 +32,7 @@ void displayUsers() {
 }
 
 void loadUsersFromFile(User **head) {
-    ifstream file("usuarios.txt");
+    ifstream file("users.txt");
     string line;
     while (getline(file, line)) {
         User *newUser = new User;
@@ -56,6 +56,8 @@ bool isUserListEmpty(User *head) {
     return head == NULL;
 }
 
+
+
 /////////////////////////////////////////////////////////////////////////
 void registerUser(User *&head) {
     User *newUser = new User;
@@ -78,6 +80,8 @@ void registerUser(User *&head) {
     }
     head = newUser;
 }//////////////////////////////////////////////////////////////////
+
+
 
 void deleteUser(User *&head, const std::string &email) {
     User *current = head;
