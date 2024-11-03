@@ -1,0 +1,36 @@
+/// PARA user_library.h o ucabmdb_library.h ///
+
+void deleteUserFromFile(const std::string &email );
+void deleteMovieFromFile(const std::string &movie_name );
+
+//// en user_library.cpp ///   ELIMINAR USUARIO
+
+void deleteUserFromFile(const std::string &email) {
+    ifstream file("usuarios.txt");
+    ofstream tempFile("arch_temp_usuarios.txt");     ///PARA QUE NO SE PIERDAN LOS DEMAS USUARIOS
+    string line;
+    bool found = false;
+
+    while (getline(file, line)) {
+        istringstream iss(line);
+        string userEmail;
+        iss >> userEmail;
+        if (userEmail != email) {
+            tempFile << line << endl;
+        } else {
+            found = true;
+        }
+    }
+
+    file.close();
+    tempFile.close();
+
+    remove("usuarios.txt");
+    rename("arch_temp_usuarios.txt", "usuarios.txt");
+
+    if (found) {
+        cout << "Este usuario " << email << " ha sido eliminado del archivo." << endl;
+    } else {
+        cout << "Este correo electronico " << email << " ya no esta en el archivo." << endl;
+    }
+}
