@@ -6,10 +6,10 @@ using namespace std;
 
 
 struct User {
-    std::string email;
-    std::string username;
+    string email;
+    string username;
     int age;
-    std::string nationality;
+    string nationality;
     User *next;
     User *prev;
 };
