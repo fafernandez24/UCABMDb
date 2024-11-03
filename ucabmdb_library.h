@@ -1,5 +1,6 @@
 #include <iostream>
 #include <sstream>
+#include <fstream>
 
 using namespace std;
 
@@ -57,19 +58,6 @@ struct Series{
     Series *prev_series;
 };
 
-/*El siguiente struct sirve para almacenar el conjunto de elementos de las reseñas de los usuarios
-  como la descripcion, la reseña y la calificacion.*/
-
-struct QualificationAndReview{
-    string email;
-    string description;
-    float quali;
-    char review[250];
-
-    QualificationAndReview *next_quali;
-    QualificationAndReview *prev_quali;
-};
-
 /*El siguiente struct sirve para almacenar el conjunto de elementos de los usuarios
   como el correo, la edad, el pais, la calificaciones y las reseñas.*/
 
@@ -77,7 +65,6 @@ struct Users{
     string email;
     int years_old;
     string country;
-    QualificationAndReview *qualification_and_review;
 
     Users *next_user;
     Users *prev_user;
@@ -279,6 +266,8 @@ void deleteUsers(Users **users_head, string email){
   }
 }
 
+/* FUNCIONES */
+
 /* FUNCIONES PARA LOS MENUS*/
 
 int mainMenu(){
@@ -318,14 +307,15 @@ int movieMenu(){
   cout << "(1) Ver peliculas\n";
   cout << "(2) Agregar pelicula\n";
   cout << "(3) Eliminar pelicula\n";
-  cout << "(4) Destacado\n";
+  cout << "(4) Buscar pelicula\n";
+  cout << "(5) Destacado\n";
   cout << "(0) Salir\n";
   cout << "========================================\n";
   cout << "Ingresar opcion: ";
   cin >> menu;
   cout << "========================================\n";
 
-  if (menu == "0" || menu == "1" || menu == "2" || menu == "3" || menu == "4")
+  if (menu == "0" || menu == "1" || menu == "2" || menu == "3" || menu == "4" || menu == "5")
     return stoi(menu);
   else{
     cout << "ERROR. Ingresaste " << menu << " que es un valor invalido.\n";
@@ -361,4 +351,159 @@ int usersMenu(){
   }
 
   return 0;
+}
+
+void searchMovie(Movie *movie_head, string name){
+   
+   if (movie_head){
+
+      Movie *aux = movie_head;
+      int movie_num = 1;
+
+      while (aux -> movie_name != name){
+        aux = aux -> next_movie;
+        ++movie_num;
+      }
+
+      cout << "              Movie #" << movie_num << "              \n";
+      cout << "========================================\n";
+      cout << "\tMovie name: " << aux->movie_name << endl;
+      cout << "\tMovie premiere: " << aux->movie_premiere << endl;
+      cout << "\tMovie type: " << aux->movie_type << endl;
+      cout << "\tMovie time: " << aux->movie_time << endl;
+      cout << "========================================\n";
+   }
+   else{
+      cout << "ERROR. Lista de peliculas vacia.\n";
+   }
+}
+
+/* PROCEDIMIENTO PARA LOS ARCHIVOS */
+
+/* PROCEDIMIENTOS PARA LA LECTURA Y ESCRITURA  DEL ARCHIVO DESTINADO PARA PELICULAS */
+
+/* PROCEDIMIENTO PARA LA LECTURA DE ARCHIVOS PARA USUARIOS */
+
+void readMoviesFile(Movie **movie_head){
+
+    ifstream file;
+    string text, movie_name, movie_type;
+    int data_line = 0, movie_premiere, movie_time;
+    Movie *aux = *movie_head;
+
+
+    file.open("moviesfile.txt", ios::in);
+
+    if (file.fail()){
+        cout << "ERROR. No se pudo abrir el archivo de USUARIOS!\n";
+        exit(1);
+    }
+
+    while(!file.eof()){
+
+        getline(file,text);
+
+        if (data_line == 3) movie_type = text;
+
+        if (data_line == 4){
+            movie_time = stoi(text);
+            addMovie(&aux, movie_name, movie_premiere, movie_type, movie_time);
+        }
+
+        if (data_line == 2) movie_premiere = stoi(text);
+
+        if (data_line == 1) movie_name = text;
+
+        ++data_line;
+
+        if (data_line == 5) data_line = 0;
+
+    }
+
+    *movie_head = aux;
+    file.close();
+}
+
+/* PROCEDIMIENTO PARA LA ESCRITURA DE ARCHIVOS EN PELICULAS */
+
+void addMovieToFile(string movie_name, int movie_premiere, string movie_type, int movie_time){
+
+    ofstream file;
+
+    file.open("usersfile.txt", ios::app);
+
+    if (file.fail()){
+        cout << "ERROR. No se pudo abrir el archivo";
+        exit(1);
+    }
+
+    file << endl;
+    file << endl << movie_name;
+    file << endl << movie_premiere;
+    file << endl << movie_type;
+    file << endl << movie_time;
+
+    file.close();
+}
+
+/* PROCEDIMIENTOS PARA LA LECTURA Y ESCRITURA  DEL ARCHIVO DESTINADO PARA USUARIOS */
+
+/* PROCEDIMIENTO PARA LA LECTURA DE ARCHIVOS PARA USUARIOS */
+
+void readUsersFile(Users **users_head){
+
+  ifstream file;
+  string text, email, country;
+  int data_line = 0, years_old;
+  Users *aux = *users_head;
+
+
+  file.open("usersfile.txt", ios::in);
+
+  if (file.fail()){
+      cout << "ERROR. No se pudo abrir el archivo de USUARIOS!\n";
+      exit(1);
+  }
+
+  while(!file.eof()){
+
+      getline(file,text);
+
+      if (data_line == 3){
+          country = text;
+          addUsers(&aux, email, years_old, country);
+      }
+
+      if (data_line == 2) years_old = stoi(text);
+
+      if (data_line == 1) email = text;
+
+      ++data_line;
+
+      if (data_line == 4) data_line = 0;
+  }
+
+  *users_head = aux;
+  file.close();
+}
+
+/* PROCEDIMIENTO PARA LA ESCRITURA DE ARCHIVOS EN USUARIOS */
+
+void addUserToFile(string email, int years_old, string country){
+
+  ofstream file;
+
+  file.open("usersfile.txt", ios::app);
+
+  if (file.fail()){
+      cout << "ERROR. No se pudo abrir el archivo";
+      exit(1);
+  }
+
+  file << endl;
+  file << endl << email;
+  file << endl << years_old;
+  file << endl << country;
+
+  file.close();
 }
