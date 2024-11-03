@@ -7,7 +7,6 @@ struct usuarios {
     string nacionalidad;
 }
 
-
 void guardar_usuarios(usuarios *p) {
     ofstream archivo("usuarios.txt");
     usuarios *actual = p;
@@ -22,8 +21,6 @@ void guardar_usuarios(usuarios *p) {
     archivo.close();
 }
 
-
-
 void mostrar_usuarios() {
     ifstream archivo("usuarios.txt");
     string linea;
@@ -32,8 +29,6 @@ void mostrar_usuarios() {
     }
     archivo.close();
 }
-
-
 
 void usuarios_por_archivo(usuarios **p) {
     ifstream archivo("usuarios.txt");
@@ -57,23 +52,14 @@ void usuarios_por_archivo(usuarios **p) {
     archivo.close();
 }
 
-
-
-
 bool lista_vacia_usuarios(usuarios *p){
     if(p) return false;
     return true;
 }
 
-
-
 ///void imprimir_los_usuarios(usuarios *p){
     usuarios *impus = p;
     cout << setw(10) << //////
 
-
-
 void imprimir_usuario(usuarios*p){
     usuarios *current = p;
-
-
