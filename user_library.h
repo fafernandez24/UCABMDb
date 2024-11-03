@@ -1,10 +1,10 @@
 #include <iostream>
 
 struct User {
-    string email;
-    string username;
+    std::string email;
+    std::string username;
     int age;
-    string nationality;
+    std::string nationality;
     User *next;
     User *prev;
 };
