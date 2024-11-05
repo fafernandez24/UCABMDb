@@ -4,7 +4,7 @@
 
 using namespace std;
 
-// Definición de la estructura Users
+// Definición de la estructura 
 struct Users {
     int id;
     string email;
@@ -29,11 +29,12 @@ void deleteUserFromFile(string email) {
     // Leer usuarios del archivo 
     while (getline(file, line)) {
         Users *new_user = new Users;
-        new_user->email = line;
+        new_user->id = stoi(line); // Leer y asignar el ID
+        getline(file, new_user->email);
         getline(file, line);
         new_user->years_old = stoi(line);
         getline(file, new_user->country);
-        
+
         new_user->next_user = nullptr;
         new_user->prev_user = tail;
 
@@ -54,7 +55,7 @@ void deleteUserFromFile(string email) {
             if (aux->prev_user) {
                 aux->prev_user->next_user = aux->next_user;
             } else {
-                head = aux->next_user; // Actualizar 
+                head = aux->next_user; // Actualizar la cabeza
             }
             if (aux->next_user) {
                 aux->next_user->prev_user = aux->prev_user;
@@ -79,14 +80,16 @@ void deleteUserFromFile(string email) {
         return;
     }
 
-    aux = head; // Aux para escribir en el archivo
+    aux = head; 
     while (aux) {
+        out_file << aux->id << endl; // Escribir el ID
         out_file << aux->email << endl;
         out_file << aux->years_old << endl;
         out_file << aux->country << endl;
         aux = aux->next_user;
     }
-    out_file.close(); // Cerrar el archivo de salida
+    out_file.close(); 
 }
+
 
 
