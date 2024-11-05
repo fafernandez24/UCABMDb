@@ -92,10 +92,4 @@ void deleteMovieFromFile(string movie_name) {
     out_file.close(); // Cerrar el archivo de salida
 }
 
-int main() {
-    string movie_name;
-    cout << "Ingrese el nombre de la pelicula a eliminar: ";
-    getline(cin, movie_name);
-    deleteMovieFromFile(movie_name);
-    return 0;
-}
+
