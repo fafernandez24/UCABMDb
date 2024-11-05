@@ -1,10 +1,10 @@
-#include <iostream>
 #include <fstream>
 #include <string>
+#include <iostream>
 
 using namespace std;
 
-// Definición de la estructura Movie
+// Definición de la estructura 
 struct Movie {
     string movie_name;
     int movie_premiere;
@@ -15,17 +15,18 @@ struct Movie {
 };
 
 void deleteMovieFromFile(string movie_name) {
-    // Abrir el archivo para lectura
+    // Abrir el archivo 
     ifstream file("moviesfile.txt");
     if (file.fail()) {
-        cout << "ERROR. No se pudo abrir el archivo de PELICULAS!\n";
+        cout << "ERROR  No fue posible abrir el archivo!\n";
         return;
     }
 
-    Movie *head = nullptr; // Inicializar la lista enlazada
+    Movie *head = nullptr; 
+    Movie *tail = nullptr; 
     string line;
     
-    // Leer películas del archivo y crear la lista enlazada
+    // Leer películas del archivo y crear la lista 
     while (getline(file, line)) {
         Movie *new_movie = new Movie;
         new_movie->movie_name = line;
@@ -35,32 +36,33 @@ void deleteMovieFromFile(string movie_name) {
         getline(file, line);
         new_movie->movie_time = stoi(line);
 
-        // Enlazar la nueva película
-        new_movie->next_movie = head;
-        new_movie->prev_movie = nullptr;
-        if (head) {
-            head->prev_movie = new_movie;
-        }
-        head = new_movie;
-    }
-    file.close(); // Cerrar el archivo de entrada
+        new_movie->next_movie = nullptr;
+        new_movie->prev_movie = tail;
 
-    // Eliminar la película especificada
+        if (tail != nullptr) {
+            tail->next_movie = new_movie;
+        } else {
+            head = new_movie;
+        }
+        tail = new_movie;
+    }
+    file.close();
+
+    // Buscar y eliminar la película 
     Movie *aux = head;
-    bool found = false; // Bandera para verificar si se encontró la película
-    while (aux) {
+    bool found = false;
+    while (aux != nullptr) {
         if (aux->movie_name == movie_name) {
-            found = true; // Marcamos que hemos encontrado la película
-            // Si es la primera película
-            if (aux->prev_movie) {
+            if (aux->prev_movie != nullptr) {
                 aux->prev_movie->next_movie = aux->next_movie;
             } else {
-                head = aux->next_movie; // Actualizar la cabeza
+                head = aux->next_movie;
             }
-            if (aux->next_movie) {
+            if (aux->next_movie != nullptr) {
                 aux->next_movie->prev_movie = aux->prev_movie;
             }
-            delete aux; // Liberar memoria
+            delete aux;
+            found = true;
             cout << "Película eliminada correctamente.\n";
             break;
         }
@@ -69,6 +71,7 @@ void deleteMovieFromFile(string movie_name) {
 
     if (!found) {
         cout << "La película no fue encontrada.\n";
+        return;
     }
 
     // Escribir de nuevo en el archivo
@@ -87,4 +90,12 @@ void deleteMovieFromFile(string movie_name) {
         aux = aux->next_movie;
     }
     out_file.close(); // Cerrar el archivo de salida
+}
+
+int main() {
+    string movie_name;
+    cout << "Ingrese el nombre de la pelicula a eliminar: ";
+    getline(cin, movie_name);
+    deleteMovieFromFile(movie_name);
+    return 0;
 }
