@@ -1,50 +1,65 @@
 
-Ted
+The Avengers
 2012
-Comedia
-106
+Acción
+143
 
-Rapidos y furiosos
-2001
-Accion
-106
+Viernes 13
+1980
+Terror
+95
 
-Whiplash
-2014
+42
+2013
 Drama
-107
+128
 
-Maxxxin
-2024
-Terror
-104
+Intensamente
+2015
+Animación
+94
 
-La sustancia
-2024
-Terror
+Batman: The Dark Knight
+2009
+Acción
+152
+
+Spider-Man
+2022
+Acción
+121
+
+Moneyball
+2011
+Drama
+133
+
+El Libro de la vida
+2014
+Animación
+155
+
+Star Wars Episodio III: La Venganza de los Sith
+2005
+Ciencia Ficción
 140
 
-Megalopolis
-2024
-Ficcion
-138
-
-Sharknado
-2013
-Terror
-86
-
-Bajo la misma estrella
+Interstellar
 2014
-Romace
-126
+Ciencia Ficción
+169
 
-Tick Tick BOOM
-2021
-Musical
-115
+SAW
+2004
+Terror
+103
 
-La razon de estar contigo
-2017
+Rocky
+1976
 Drama
-160
+101
+
+Terminator
+1984
+Ciencia Ficción
+108
