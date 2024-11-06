@@ -2,7 +2,7 @@ MOVIES
 
 The Avengers
 2012
-Acción
+Accion
 143
 
 Viernes 13
@@ -17,17 +17,17 @@ Drama
 
 Intensamente
 2015
-Animación
+Animacion
 94
 
 Batman: The Dark Knight
 2009
-Acción
+Accion
 152
 
 Spider-Man
 2022
-Acción
+Accion
 121
 
 Moneyball
@@ -37,17 +37,17 @@ Drama
 
 El Libro de la vida
 2014
-Animación
+Animacion
 155
 
 Star Wars Episodio III: La Venganza de los Sith
 2005
-Ciencia Ficción
+Ciencia Ficcion
 140
 
 Interstellar
 2014
-Ciencia Ficción
+Ciencia Ficcion
 169
 
 SAW
@@ -62,5 +62,5 @@ Drama
 
 Terminator
 1984
-Ciencia Ficción
+Ciencia Ficcion
 108
