@@ -3,6 +3,7 @@
 #include <string>
 
 using namespace std;
+using  sizeType = std::string::size_type;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -20,6 +21,40 @@ struct Movie{
     Movie *next_movie;
     Movie *prev_movie;
 };
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+/* FUNCIONES DE VALIDACION DE TIPO BOOLEANO*/
+
+/* FUNCION PARA VALIDAR LA FECHA DE ESTRENO DE LA PELICULA */
+
+bool checkIntDataPremiere(string word){
+
+    if (word.empty()) return false;
+
+    for (sizeType n = 0; n < word.length(); ++n){
+        if (word[n] < '0' || word[n] > '9') return false;
+    }
+
+    if (stoi(word) >= 1895 && stoi(word) <= 9999) return true;
+
+    return false;
+}
+
+/* FUNCION PARA VALIDAR LA DURACION DE UNA PELICULA */
+
+bool checkIntDataTime(string word){
+
+    if (word.empty()) return false;
+
+    for (sizeType n = 0; n < word.length(); ++n){
+        if (word[n] < '0' || word[n] > '9') return false;
+    }
+
+    if (stoi(word) >= 0 && stoi(word) <= 51420) return true;
+
+    return false;
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -46,6 +81,7 @@ Movie *createMovie(string name, int premiere, string type, int time){
 
 /* Funcion para obtener el nombre de la pelicula */
 string getMovieName(){
+
   string movie_name;
   cin.ignore();
   cout << "\tNombre: ";
@@ -55,14 +91,26 @@ string getMovieName(){
 
 /* Funcion para obtener el año de estreno de la pelicula */
 int getMoviePremiere(){
-  int movie_premiere;
-  cout << "\tEstreno: ";
-  cin >> movie_premiere;
-  return movie_premiere;
+
+  string movie_premiere;
+  bool check_num = false;
+  
+  while (check_num == false){
+    cout << "\tEstreno: ";
+    cin >> movie_premiere;
+
+    check_num = checkIntDataPremiere(movie_premiere);
+    if (check_num == false){
+      cout << "ERROR. Ingresaste un valor invalido!\n";
+      cout << "AVISO: Igresar un entero entre 1985 y 9999!\n";
+    }
+  }
+  return stoi(movie_premiere);
 }
 
 /* Funcion para obtener el genero de la pelicula */
 string getMovieType(){
+
   string movie_type;
   cin.ignore();
   cout << "\tGenero: ";
@@ -72,10 +120,22 @@ string getMovieType(){
 
 /* Funcion para obtener el tiempo que dura la pelicula */
 int getMovieTime(){
-  int movie_time;
-  cout << "\tDuracion: ";
-  cin >> movie_time;
-  return movie_time;
+
+  string movie_time;
+  bool check_num = false;
+
+  while (check_num == false){
+
+    cout << "\tDuracion: ";
+    cin >> movie_time;
+
+    check_num = checkIntDataTime(movie_time);
+    if (check_num == false){
+      cout << "ERROR. Ingresaste un valor invalido!\n";
+      cout << "AVISO: Igresar un entero entre 0 y 51420!\n";
+    }
+  }
+  return stoi(movie_time);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -99,7 +159,7 @@ void printMovie(Movie *movie_head){
       cout << "\tMovie name: " << aux->movie_name << endl;
       cout << "\tMovie premiere: " << aux->movie_premiere << endl;
       cout << "\tMovie type: " << aux->movie_type << endl;
-      cout << "\tMovie time: " << aux->movie_time << endl;
+      cout << "\tMovie time: " << aux->movie_time << " min" << endl;
       cout << "========================================\n";
 
       aux = aux->next_movie;
@@ -178,7 +238,7 @@ void searchMovie(Movie *movie_head, string name){
       cout << "\tMovie name: " << aux->movie_name << endl;
       cout << "\tMovie premiere: " << aux->movie_premiere << endl;
       cout << "\tMovie type: " << aux->movie_type << endl;
-      cout << "\tMovie time: " << aux->movie_time << endl;
+      cout << "\tMovie time: " << aux->movie_time << " min" << endl;
       cout << "========================================\n";
    }
    else{
@@ -230,11 +290,27 @@ void readMoviesFile(Movie **movie_head){
       if (data_line == 3) movie_type = text;
 
       if (data_line == 4){
+
+        if (checkIntDataTime(text) == true){
           movie_time = stoi(text);
           addMovie(&aux, movie_name, movie_premiere, movie_type, movie_time);
+        }
+        else{
+          cout << "\nERROR. Dato invalidos en el archivo!\n";
+          cout << "AVISO: No se cargaron los datos del archivo de peliculas!\n\n";
+          file.close();
+        }
       }
 
-      if (data_line == 2) movie_premiere = stoi(text);
+      if (data_line == 2){
+        
+        if (checkIntDataPremiere(text) == true) movie_premiere = stoi(text);
+        else{
+          cout << "\nERROR. Dato invalidos en el archivo!\n";
+          cout << "AVISO: No se cargaron los datos del archivo de peliculas!\n\n";
+          file.close();
+        }
+      }
 
       if (data_line == 1) movie_name = text;
 
@@ -300,7 +376,9 @@ void writeMovieFile(Movie *movie_head){
         file << aux -> movie_name << endl;
         file << aux -> movie_premiere << endl;
         file << aux -> movie_type << endl;
-        file << aux -> movie_time << endl << endl;
+
+        if (aux -> next_movie == NULL) file << aux -> movie_time;
+        else file << aux -> movie_time << endl << endl;
 
         aux = aux -> next_movie;
       }
@@ -326,14 +404,13 @@ int movieMenu(){
   cout << "(2) Agregar pelicula\n";
   cout << "(3) Eliminar pelicula\n";
   cout << "(4) Buscar pelicula\n";
-  cout << "(5) Destacado\n";
   cout << "(0) Salir\n";
   cout << "========================================" << endl;
   cout << "Ingresar opcion: ";
   cin >> menu;
   cout << "========================================\n";
   
-  if (menu == "0" || menu == "1" || menu == "2" || menu == "3" || menu == "4" || menu == "5") return stoi(menu);
+  if (menu >= "0"  && menu <= "3") return stoi(menu);
 
   cout << "========================================\n";
   cout << "ERROR. Ingresaste " << menu << " que es un valor invalido.\n";
