@@ -3,6 +3,7 @@
 #include <fstream>
 
 using namespace std;
+using  sizeType = std::string::size_type;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -19,6 +20,40 @@ struct Users{
     Users *next_user;
     Users *prev_user;
 };
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+/* FUNCIONES DE VALIDACION DE TIPO BOOLEANO*/
+
+/* ESTA FUNCION VALIDA LA EDAD DEL USUARIO */
+
+bool checkIntDataYearsOld(string word){
+
+    if (word.empty()) return false;
+
+    for (sizeType n = 0; n < word.length(); ++n){
+        if (word[n] < '0' || word[n] > '9') return false;
+    }
+
+    if (stoi(word) >= 0 && stoi(word) <= 150) return true;
+
+    return false;
+}
+
+/* ESTA FUNCION VALIDA EL CORREO DEL USUARIO */
+
+bool checkUserEmail(string email){
+
+    if (email.empty()) return false;
+
+    for (sizeType n = 0; n < email.length(); ++n){
+        if (email[n] == '@') return true;
+    }
+
+    return false;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////
 
 /* PROCEDIMIENTOS & FUNCIONES PARA LOS USUARIOS */
 
@@ -43,18 +78,40 @@ Users *createUser(string email, int old, string country){
 /* Funcion para obtener el nombre de la pelicula */
 string getUsersEmail(){
   string email;
-  cin.ignore();
-  cout << "\tEmail: ";
-  getline(cin, email);
+  bool check_email = false;
+
+  while(check_email == false){
+    cin.ignore();
+    cout << "\tEmail: ";
+    getline(cin, email);
+
+    check_email = checkUserEmail(email);
+    if (check_email == false){
+      cout << "ERROR. Ingresaste un correo invalido!\n";
+      cout << "AVISO: Recuerda incluir el @!\n";
+    }
+  }
+
   return email;
 } 
 
 /* Funcion para obtener el año de estreno de la pelicula */
 int getUsersYearsOld(){
-  int years_old;
-  cout << "\tEdad: ";
-  cin >> years_old;
-  return years_old;
+  string years_old;
+  bool check_num = false;
+
+  while (check_num == false){
+
+    cout << "\tEdad: ";
+    cin >> years_old;
+    
+    check_num = checkIntDataYearsOld(years_old);
+    if (check_num == false){
+      cout << "ERROR. Ingresaste un valor invalido!\n";
+      cout << "AVISO: Igresar un entero entre 0 y 150!\n";
+    }
+  }
+  return stoi(years_old);
 }
 
 /* Funcion para obtener el genero de la pelicula */
@@ -84,9 +141,9 @@ void printUsers(Users *users_head){
 
       cout << "              User #" << users_num << "              \n";
       cout << "========================================\n";
-      cout << "\tUsers email: " << aux-> email << endl;
-      cout << "\tMovie premiere: " << aux->years_old << endl;
-      cout << "\tMovie type: " << aux->country << endl;
+      cout << "\tUser email: " << aux-> email << endl;
+      cout << "\tUser age: " << aux->years_old << " years" << endl;
+      cout << "\tUser country: " << aux->country << endl;
       cout << "========================================\n";
 
       aux = aux->next_user;
@@ -163,9 +220,9 @@ void searchUsers(Users *users_head, string email){
 
       cout << "              Movie #" << users_num << "              \n";
       cout << "========================================\n";
-      cout << "\tMovie name: " << aux->email << endl;
-      cout << "\tMovie premiere: " << aux->years_old << endl;
-      cout << "\tMovie type: " << aux->country << endl;
+      cout << "\tUser email: " << aux->email << endl;
+      cout << "\tUser age: " << aux->years_old << endl;
+      cout << "\tUser country: " << aux->country << endl;
       cout << "========================================\n";
    }
    else{
@@ -220,9 +277,27 @@ void readUsersFile(Users **users_head){
           addUsers(&aux, email, years_old, country);
       }
 
-      if (data_line == 2) years_old = stoi(text);
+      if (data_line == 2){
 
-      if (data_line == 1) email = text;
+        if (checkIntDataYearsOld(text) == true) years_old = stoi(text);
+        else{
+          cout << "\nERROR. Dato invalidos en el archivo!\n";
+          cout << "AVISO: No se cargaron los datos del archivo de usuarios!\n\n";
+          file.close();
+          break;
+        }
+      }
+
+      if (data_line == 1){
+
+        if (checkUserEmail(text) == true) email = text;
+        else{
+          cout << "\nERROR. Dato invalidos en el archivo!\n";
+          cout << "AVISO: No se cargaron los datos del archivo de usuarios!\n\n";
+          file.close();
+          break;
+        }
+      } 
 
       ++data_line;
 
@@ -283,7 +358,9 @@ void writeUsersFile(Users *users_head){
 
         file << aux -> email << endl;
         file << aux -> years_old << endl;
-        file << aux -> country << endl << endl;
+
+        if (aux -> next_user == NULL) file << aux -> country;
+        else file << aux -> country << endl << endl;
 
         aux = aux -> next_user;
       }
@@ -313,8 +390,7 @@ int usersMenu(){
   cin >> menu;
   cout << "========================================\n";
 
-  if (menu == "0" || menu == "1" || menu == "2" || menu == "3" || menu == "4")
-    return stoi(menu);
+  if (menu >= "0"  && menu <= "3") return stoi(menu);
 
   cout << "ERROR. Ingresaste " << menu << " que es un valor invalido.\n";
   cout << "Por favor ingresar una opcion correcta.\n";
