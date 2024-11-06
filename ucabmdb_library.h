@@ -1,5 +1,4 @@
 #include <iostream>
-#include <sstream>
 #include <fstream>
 #include <string>
 
@@ -25,8 +24,7 @@ int mainMenu(){
   cin >> menu;
   cout << "========================================\n";
 
-  if (menu == "0" || menu == "1" || menu == "2" || menu == "3")
-    return stoi(menu);
+  if (menu >= "0"  && menu <= "3") return stoi(menu);
 
   cout << "ERROR. Ingresaste " << menu << " que es un valor invalido.\n";
   cout << "Por favor ingresar una opcion correcta.\n";
