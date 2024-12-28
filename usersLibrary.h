@@ -16,9 +16,9 @@ struct Users{
     string email;
     int years_old;
     string country;
+    int id;
 
     Users *next_user;
-    Users *prev_user;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -53,24 +53,48 @@ bool checkUserEmail(string email){
     return false;
 }
 
+bool checkIntUserId(string word){
+
+    if (word.empty()) return false;
+
+    for (sizeType n = 0; n < word.length(); ++n){
+        if (word[n] < '0' || word[n] > '9') return false;
+    }
+
+    if (stoi(word) >= 0 && stoi(word) <= 9999999) return true;
+
+    return false;
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 /* PROCEDIMIENTOS & FUNCIONES PARA LOS USUARIOS */
 
 /* Funcion que busca retornar un puntero que apunte a un elemento de tipo usuario */
 
-Users *createUser(string email, int old, string country){
+Users *createUser(string email, int old, string country, int id){
 
   Users *new_user = new Users;
 
   new_user -> email = email;
   new_user -> years_old = old;
   new_user -> country = country;
+  new_user -> id = id;
 
   new_user -> next_user = NULL;
-  new_user -> prev_user = NULL;
 
   return new_user;
+}
+
+Users *getUsersNode(Users *users_head, string email){
+  if (users_head){
+    Users *aux = users_head;
+    while (aux){
+      if (aux -> email == email) return aux;
+      aux = aux -> next_user;
+    }
+  }
+  return users_head;
 }
 
 /* FUNCIONES PARA OBTENER LOS DATOS DE LAS PELICULAS */
@@ -123,11 +147,29 @@ string getUsersCountry(){
   return country;
 }
 
+int getUserId(){
+
+  string user_id;
+  bool check_num = false;
+  
+  while (check_num == false){
+    cout << "\tID: ";
+    cin >> user_id;
+
+    check_num = checkIntUserId(user_id);
+    if (check_num == false){
+      cout << "ERROR. Ingresaste un valor invalido!\n";
+      cout << "AVISO: Igresar un entero entre 10000 y 99999!\n";
+    }
+  }
+  return stoi(user_id);
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-/* Procedimiento para mostras las peliculas en pantalla */
+/* Procedimiento para mostras los usuarios en pantalla */
 
-void printUsers(Users *users_head){
+void printUsersList(Users *users_head){
 
   Users *aux = users_head;
   int users_num = 1;
@@ -144,6 +186,7 @@ void printUsers(Users *users_head){
       cout << "\tUser email: " << aux-> email << endl;
       cout << "\tUser age: " << aux->years_old << " years" << endl;
       cout << "\tUser country: " << aux->country << endl;
+      cout << "\tUser ID: " << aux->id << endl;
       cout << "========================================\n";
 
       aux = aux->next_user;
@@ -163,9 +206,9 @@ void printUsers(Users *users_head){
 
 /* Procedimiento para agregar peliculas */
 
-void addUsers(Users **users_head, string email, int years_old, string country){
+void addUsers(Users **users_head, string email, int years_old, string country, int id){
 
-    Users *new_user = createUser(email, years_old, country);
+    Users *new_user = createUser(email, years_old, country, id);
 
     if (!*users_head){
       *users_head = new_user;
@@ -176,7 +219,7 @@ void addUsers(Users **users_head, string email, int years_old, string country){
     }
 }
 
-/* Procedimiento para eliminar peliculas */
+/* Procedimiento para eliminar usuarios */
 
 void deleteUsers(Users **users_head, string email){
 
@@ -184,50 +227,24 @@ void deleteUsers(Users **users_head, string email){
 
     Users *aux = *users_head;
 
-    if (aux -> email != email){
+    if (aux->email == email){
+      *users_head = aux->next_user;
+      delete(aux);
+    }
+    else{
       Users *aux2 = NULL;
 
-      while (aux -> email != email || aux ->next_user == NULL){
+      while (aux -> email != email){
         aux2 = aux;
         aux = aux -> next_user;
       }
       aux2 -> next_user = aux -> next_user;
       delete(aux);
     }
-    else{
-      *users_head = aux -> next_user;
-      delete(aux);
-    }
   }
   else{
     cout << "ERROR. Lista de usuarios vacia.\n";
   }
-}
-
-/* PROCEDIMIENTO PARA BUSCAR AL USUARIO E IMPRIMIR SUS DATOS */
-
-void searchUsers(Users *users_head, string email){
-   
-   if (users_head){
-
-      Users *aux = users_head;
-      int users_num = 1;
-
-      while (aux -> email != email){
-        aux = aux -> next_user;
-        ++users_num;
-      }
-
-      cout << "              Movie #" << users_num << "              \n";
-      cout << "========================================\n";
-      cout << "\tUser email: " << aux->email << endl;
-      cout << "\tUser age: " << aux->years_old << endl;
-      cout << "\tUser country: " << aux->country << endl;
-      cout << "========================================\n";
-   }
-   else{
-      cout << "ERROR. Lista de peliculas vacia.\n";
-   }
 }
 
 /* FUNCION QUE RETORNA UN TIPO DE DATO BOOLEANO QUE DETERMINA SI UN USUARIO SE ENCUENTRA O NO EN LA LISTA DE USUARIOS */
@@ -253,7 +270,7 @@ void readUsersFile(Users **users_head){
 
   ifstream file;
   string text, email, country;
-  int data_line = 0, years_old;
+  int data_line = 0, years_old, id;
   Users *aux = *users_head;
 
 
@@ -261,6 +278,7 @@ void readUsersFile(Users **users_head){
 
   if (file.fail()){
       cout << "ERROR. No se pudo abrir el archivo de USUARIOS!\n";
+      file.close();
       exit(1);
   }
 
@@ -272,10 +290,7 @@ void readUsersFile(Users **users_head){
 
       getline(file,text);
 
-      if (data_line == 3){
-          country = text;
-          addUsers(&aux, email, years_old, country);
-      }
+      if (data_line == 3) country = text;
 
       if (data_line == 2){
 
@@ -299,9 +314,17 @@ void readUsersFile(Users **users_head){
         }
       } 
 
+      if (data_line == 4){
+
+        if (checkIntUserId(text) == true){
+          id = stoi(text);
+          addUsers(&aux, email, years_old, country, id);
+        }
+      }
+
       ++data_line;
 
-      if (data_line == 4) data_line = 0;
+      if (data_line == 5) data_line = 0;
     }
     *users_head = aux;
 
@@ -317,7 +340,7 @@ void readUsersFile(Users **users_head){
 
 /* PROCEDIMIENTO PARA LA ESCRITURA DE ARCHIVOS EN USUARIOS */
 
-void addUserToFile(string email, int years_old, string country){
+void addUserToFile(string email, int years_old, string country, int id){
 
   ofstream file;
 
@@ -332,6 +355,7 @@ void addUserToFile(string email, int years_old, string country){
   file << endl << email;
   file << endl << years_old;
   file << endl << country;
+  file << endl << id;
 
   file.close();
 }
@@ -358,9 +382,10 @@ void writeUsersFile(Users *users_head){
 
         file << aux -> email << endl;
         file << aux -> years_old << endl;
+        file << aux -> country << endl;
 
-        if (aux -> next_user == NULL) file << aux -> country;
-        else file << aux -> country << endl << endl;
+        if (aux -> next_user == NULL) file << aux -> id;
+        else file << aux -> id << endl << endl;
 
         aux = aux -> next_user;
       }
@@ -384,13 +409,13 @@ int usersMenu(){
   cout << "(2) Agregar usuario\n";
   cout << "(3) Eliminar usuario\n";
   cout << "(4) Buscar usuario\n";
-  cout << "(0) Salir\n";
+  cout << "(0) Regresar al menu principal\n";
   cout << "========================================\n";
   cout << "Ingresar opcion: ";
   cin >> menu;
   cout << "========================================\n";
 
-  if (menu >= "0"  && menu <= "3") return stoi(menu);
+  if (menu >= "0"  && menu <= "4") return stoi(menu);
 
   cout << "ERROR. Ingresaste " << menu << " que es un valor invalido.\n";
   cout << "Por favor ingresar una opcion correcta.\n";
@@ -405,51 +430,31 @@ void addUsersMenu(Users **users_head){
   string email = getUsersEmail();
   int years_old = getUsersYearsOld();
   string country = getUsersCountry();
+  int id = getUserId();
   cout << "========================================\n";
 
   bool users_exist = findUsers(*users_head, email);
 
   if (users_exist == false){
-    addUsers(&*users_head, email, years_old, country);
-    addUserToFile(email, years_old, country);
+    addUsers(&*users_head, email, years_old, country, id);
+    addUserToFile(email, years_old, country, id);
     cout << "Se agrego el usuario correctamente!\n";
   }
   else cout << "AVISO: El usuario ya existe!\n";
 
 }
 
-void deleteUsersMenu(Users **users_head){
+/* PROCEDIMIENTO DEL MENU PARA BUSCAR ALGUN USUARIO */
+
+string searchUserMenu(){
 
   cout << "========================================\n";
-  cout << "              DELETE USER               \n";
-  cout << "========================================\n";
-  string email = getUsersEmail();
-  cout << "========================================\n";
-
-  bool users_exist = findUsers(*users_head, email);
-
-  if (users_exist == true){
-    deleteUsers(&*users_head, email);
-    writeUsersFile(*users_head);
-    cout << "El usuario se borro correctamente!\n";
-  }
-  else cout << "ERROR. El usuario no se pudo encontrar!\n";
-}
-
-/* PROCEDIMIENTO DEL MENU PARA BUSCAR LA PELICULA */
-
-void searchUsersMenu(Users *users_head){
-
-  cout << "========================================\n";
-  cout << "              SEARCH USERS              \n";
+  cout << "              SEARCH USER               \n";
   cout << "========================================\n";
   string email = getUsersEmail();
   cout << "========================================\n";
 
-  bool users_exist = findUsers(users_head, email);
-
-  if (users_exist == true) searchUsers(users_head, email);
-  else cout << "ERROR. No se encontro el usuario!\n";
+  return email;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
