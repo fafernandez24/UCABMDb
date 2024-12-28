@@ -1,0 +1,85 @@
+MOVIES
+
+Ted 2
+2017
+Comedy
+200
+545666
+
+Terminator
+1984
+Ciencia Ficcion
+108
+200011
+
+Rocky
+1976
+Drama
+101
+200011
+
+SAW
+2004
+Terror
+103
+200010
+
+Interstellar
+2014
+Ciencia Ficcion
+169
+200009
+
+Star Wars Episodio III: La Venganza de los Sith
+2005
+Ciencia Ficcion
+140
+200008
+
+El Libro de la vida
+2014
+Animacion
+155
+200007
+
+Moneyball
+2011
+Drama
+133
+200006
+
+Spider-Man
+2022
+Accion
+121
+200005
+
+Batman: The Dark Knight
+2009
+Accion
+152
+200004
+
+42
+2013
+Drama
+128
+200002
+
+Viernes 13
+1980
+Terror
+95
+200001
+
+The Avengers
+2012
+Accion
+143
+200000
+
+Ted
+2012
+Comedia
+160
+200013
