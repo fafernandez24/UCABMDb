@@ -69,12 +69,19 @@ bool findMovieCalificationBool(MovieCalification *cali_head, string movie_name ,
     return false;
 }
 
-float getCalification(){
+float getCalification() {
     float cali = 0;
-    do{
-        cout << "\tCalificacion: ";
+    
+    do {
+        cout << "\tCalificacion (1 a 5): ";
         cin >> cali;
-    } while (cali < 0 || cali > 5);
+
+        /* VERIFICACIÓN PARA ASEGURARSE DE QUE ESTÁ EN UN RANGO DEL 1 AL 5 */
+        if (cali < 1 || cali > 5) {
+            cout << "ERROR: La calificacion debe estar entre 1 y 5.\n";
+        }
+    } while (cali < 1 || cali > 5);
+    
     return cali;
 }
 
