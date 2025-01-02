@@ -3,19 +3,25 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "ucabmdbLibrary.h"
+#include "library/ucabmdbLibrary.h"
 
 using namespace std;
 
 int main(){
 
-  Movie *movie_list = NULL;
-  Users *users_list = NULL;
+  Users *users_list = NULL; // LISTA DE PELICULAS
+  Movie *movie_list = NULL; // LISTA DE USUARIOS
+  Serie *serie_list = NULL; // LISTA DE SERIES
+
   MovieCalification *calification_list = NULL;
   MovieReview *review_list = NULL;
 
+  readUsersFile(&users_list); 
   readMoviesFile(&movie_list);
-  readUsersFile(&users_list);
+
+  readSeriesFile(&serie_list);
+  readSeasonsFile(serie_list);
+  readChaptersFile(serie_list);
   readCaliFile(&calification_list, movie_list, users_list);
   readReviewFile(&review_list, movie_list, users_list);
 
@@ -36,7 +42,7 @@ int main(){
               printMovieList(movie_list);
               break;
             }
-            case 2: // AGREGAR PELICULA7
+            case 2: // AGREGAR PELICULA
             {
               addMovieMenu(&movie_list);
               break;
@@ -131,10 +137,40 @@ int main(){
         main_option = -1;
         break;
       }
-      case 2:
+      case 2:  // DESPLEGAR MENU DE SERIES
       {
-        cout << "SERIES MENU\n";
-        cout << "COMING SOON\n";
+        int serie_option = 0;
+
+        do{
+
+          serie_option = serieMenu();
+
+          switch(serie_option){
+
+            case 1:
+            {
+              printSerieList(serie_list);
+              break;
+            }
+            case 2:
+            {
+              addSerieMenu(&serie_list);
+              break;
+            }
+            case 3:{
+              cout << "ELIMINAR SERIE\n";
+              cout << "COMING SOON\n";
+              break;
+            }
+            case 4:{
+              showSerieByName(&serie_list);
+              writeSeasonsFile(serie_list);
+              writeChapterFile(serie_list);
+            }
+          }
+
+        }while (serie_option != 0);
+
         break;
       }
       case 3:
