@@ -1,0 +1,49 @@
+SEASONS
+
+Funny Summer
+2012
+200000
+
+Funny Spring
+2012
+200000
+
+Yellow Sugar
+2012
+200000
+
+End of vacations
+2012
+200000
+
+Hey Jessie
+2012
+200002
+
+Saga Saiyan
+2001
+200003
+
+Saga Freezer
+2002
+200003
+
+Saga Androide
+2005
+200003
+
+Saga Majin Boo
+2010
+200003
+
+Black Star Dragon Ball Saga
+1996
+200004
+
+Baby Saga
+1996
+200004
+
+Super Android 17 Saga
+1997
+200004

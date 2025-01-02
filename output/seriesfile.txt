@@ -1,0 +1,26 @@
+SERIES
+
+Liv & Maddie
+2011
+Drama
+200000
+
+Masha & Bear
+2003
+Comedy
+200001
+
+Jessie
+2010
+Comedia
+200002
+
+Dragon Ball
+1994
+Anime
+200003
+
+GT
+1996
+Anime
+200004
