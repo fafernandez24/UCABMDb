@@ -1,4 +1,5 @@
 // UCABMDB
+// @author Freddy Fernández
 
 #include <iostream>
 #include <fstream>
@@ -9,21 +10,37 @@ using namespace std;
 
 int main(){
 
+  welcomeScreenUCABMDb();
+
   Users *users_list = NULL; // LISTA DE PELICULAS
   Movie *movie_list = NULL; // LISTA DE USUARIOS
   Serie *serie_list = NULL; // LISTA DE SERIES
 
-  MovieCalification *calification_list = NULL;
-  MovieReview *review_list = NULL;
+  MovieCalification *calification_movies_list = NULL;
+  MovieReview *review_movies_list = NULL;
 
-  readUsersFile(&users_list); 
+  SerieCalification *calification_series_list = NULL;
+  SerieReview *review_series_list = NULL;
+  SeasonCalification *calification_seasons_list = NULL; 
+  ChapterCalification *calification_chapter_list = NULL;
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+  readUsersFile(&users_list);
   readMoviesFile(&movie_list);
 
   readSeriesFile(&serie_list);
   readSeasonsFile(serie_list);
   readChaptersFile(serie_list);
-  readCaliFile(&calification_list, movie_list, users_list);
-  readReviewFile(&review_list, movie_list, users_list);
+
+  readMovieCaliFile(&calification_movies_list, movie_list, users_list);
+  readReviewFile(&review_movies_list, movie_list, users_list);
+
+  readSerieCaliFile(&calification_series_list, serie_list, users_list);
+  readSerieReviewFile(&review_series_list, serie_list, users_list);
+  readSeasonCaliFile(&calification_seasons_list, serie_list, users_list);
+  readChapterCaliFile(&calification_chapter_list, serie_list, users_list);
+
 
   int main_option = -1;
   while (main_option != 0){
@@ -49,12 +66,12 @@ int main(){
             }
             case 3: // ELIMINAR PELICULA
             {
-              deleteMovieMenu(&movie_list, &calification_list, &review_list);
+              deleteMovieMenu(&movie_list, &calification_movies_list, &review_movies_list);
               break;
             }
             case 4:
             {
-              printMovie(movie_list, calification_list, review_list);
+              printMovie(movie_list, calification_movies_list, review_movies_list);
               break;
             }
             case 5:
@@ -62,28 +79,29 @@ int main(){
               int cali_menu = 0;
 
               do{
-                cali_menu = calificationsMenu();
+                cali_menu = calificationMovieMenu();
 
                 switch(cali_menu){
 
                   case 1:
                   {
-                    showMovieCalifications(calification_list);
+                    showMovieCalifications(calification_movies_list);
                     break;
                   }
                   case 2:
                   {
-                    addMovieCalificationMenu(&calification_list, movie_list, users_list);
+                    addMovieCalificationMenu(&calification_movies_list, movie_list, users_list);
                     break;
                   }
                   case 3:
                   {
-                    deleteMovieCalificationMenu(&calification_list);
+                    deleteMovieCalificationMenu(&calification_movies_list);
                     break;
                   }
                   default:
                   {
-                    cout << "AVISO: Regresaste al menu de peliculas...\n";
+                    if (cali_menu == 0) cout << "AVISO: Regresaste al menu de peliculas...\n";
+                    else cout << "VUELVE A INTENTAR\n";
                     break;
                   }
                 }
@@ -103,24 +121,26 @@ int main(){
 
                   case 1:
                   {
-                    showMovieReview(review_list);
+                    showMovieReview(review_movies_list);
                     break;
                   }
                   case 2:
                   {
-                    addMovieReviewMenu(&review_list, movie_list, users_list);
+                    addMovieReviewMenu(&review_movies_list, movie_list, users_list);
                     break;
                   }
                   case 3:
                   {
-                    deleteMovieReviewMenu(&review_list);
+                    deleteMovieReviewMenu(&review_movies_list);
                     break;
                   }
                   default:
                   {
-                    cout << "AVISO: Regresaste al menu de peliculas...\n";
+                    if (menu_review == 0) cout << "AVISO: Regresaste al menu de peliculas...\n";
+                    else cout << "VUELVE A INTENTAR\n";
                     break;
                   }
+
                 }
 
               }while (menu_review != 0);
@@ -128,7 +148,10 @@ int main(){
             }
             default:
             {
-              if (movie_option == 0) cout << "AVISO: Regresaste al menu principal...\n";
+              if (movie_option == 0){
+                cout << "AVISO: Regresaste al menu principal...\n";
+                system("cls");
+              }
               else cout << "VUELVE A INTENTAR\n";  
               break;
             }
@@ -163,10 +186,95 @@ int main(){
               break;
             }
             case 4:{
-              showSerieByName(&serie_list);
-              writeSeasonsFile(serie_list);
-              writeChapterFile(serie_list);
+              printSerie(&serie_list, calification_series_list, review_series_list, &calification_seasons_list, &calification_chapter_list, users_list);
+              break;
             }
+            case 5:
+            {
+              int cali_menu = 0;
+
+              do{
+
+                cali_menu = calificationSerieMenu();
+
+                switch(cali_menu){
+
+                  case 1:
+                  {
+                    showSerieCalifications(calification_series_list);
+                    break;
+                  }
+                  case 2:
+                  {
+                    addSerieCalificationMenu(&calification_series_list, serie_list, users_list);
+                    break;
+                  }
+                  case 3:
+                  {
+                    deleteSerieCalificationMenu(&calification_series_list);
+                    break;
+                  }
+                  default:
+                  {
+                    if (cali_menu == 0) cout << "AVISO: Regresaste al menu de series...\n";
+                    else cout << "VUELVE A INTENTAR\n"; 
+                    break;
+                  }
+
+                }
+
+              }while (cali_menu != 0);
+
+              break;
+            }
+            case 6:
+            {
+              int menu_review = 0;
+
+              do{
+
+                menu_review = reviewSerieMenu();
+
+                switch (menu_review){
+
+                  case 1:
+                  {
+                    showSerieReview(review_series_list);
+                    break;
+                  }
+                  case 2:
+                  {
+                    addSerieReviewMenu(&review_series_list, serie_list, users_list);
+                    break;
+                  }
+                  case 3:
+                  {
+                    deleteSerieReviewMenu(&review_series_list);
+                    break;
+                  }
+                  default:
+                  {
+                    if (menu_review == 0) cout << "AVISO: Regresaste al menu de series...\n";
+                    else cout << "VUELVE A INTENTAR\n";
+                    break;
+                  }
+
+                }
+
+              }while (menu_review != 0);
+              break;
+
+            }
+            default:
+            {
+              if (serie_option == 0){
+                cout << "AVISO: Regresaste al menu principal...\n";
+                system("cls");
+              }
+              else cout << "VUELVE A INTENTAR\n"; 
+              break;
+            }
+
           }
 
         }while (serie_option != 0);
@@ -189,20 +297,23 @@ int main(){
             {
               addUsersMenu(&users_list);
               break;
-            }
+            } 
             case 3: // ELIMINAR USUARIO
             {
-              deleteUsersMenu(&users_list, &calification_list, &review_list);
+              deleteUsersMenu(&users_list, &calification_movies_list, &review_movies_list);
               break;
             }
             case 4:
             {
-              printUser(users_list, calification_list, review_list);
+              printUser(users_list, calification_movies_list, review_movies_list, calification_series_list, review_series_list, calification_seasons_list, calification_chapter_list);
               break;
             }
             default:
             {
-              if (users_option == 0) cout << "Regresando al menu principal...\n";
+              if (users_option == 0){
+                cout << "Regresando al menu principal...\n";
+                system("cls");
+              }
               else cout << "VUELVE A INTENTAR\n";  
               break;
             }
@@ -213,7 +324,10 @@ int main(){
       }
       default:
       {
-        if (main_option == 0) cout << "GRACIAS POR VISITARNOS!\n";
+        if (main_option == 0){
+          system("cls");
+          cout << "GRACIAS POR VISITARNOS!\n";\
+        }
         else cout << "VUELVE A INTENTAR!\n";
         break;
       }
