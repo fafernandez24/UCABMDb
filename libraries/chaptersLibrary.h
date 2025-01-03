@@ -16,6 +16,28 @@ bool findChapterByName(Chapter *chapter_head, string chapter_name){
   return false;
 }
 
+bool findChapterBySerie(Serie *serie, string chapter_name){
+  Season *season = serie->season_head;
+
+  if (season){
+
+    Chapter *aux = NULL;
+
+    while (season){
+
+      aux = season->chapters_head;
+
+      while(aux){
+        if (aux->chapter_name == chapter_name) return true;
+        aux = aux->next_chapter;
+      }
+
+      season = season->next_season;
+    }
+  }
+  return false;
+}
+
 bool checkIntChapterId(string word){
 
     if (word.empty()) return false;
@@ -170,6 +192,28 @@ Chapter *getChapterNodeById(Chapter *chapter_head, int id){
       if (aux->id == id) return aux;
       aux = aux->next_chapter;
 
+    }
+  }
+  return NULL;
+}
+
+Chapter *getChapterNodeBySerie(Serie *serie, string chapter_name){
+  Season *season = serie->season_head;
+
+  if (season){
+
+    Chapter *aux = NULL;
+
+    while (season){
+
+      aux = season->chapters_head;
+
+      while(aux){
+        if (aux->chapter_name == chapter_name) return aux;
+        aux = aux->next_chapter;
+      }
+
+      season = season->next_season;
     }
   }
   return NULL;
@@ -545,43 +589,3 @@ void showChapter(Chapter *chapter_head){
     cout << "Sin temporadas todavia...\n"; 
   }
 }
-
-void driveChapters(Chapter **chapter_head, Serie *serie_head){
-
-  int chapter_option = -1;
-
-  while (chapter_option != 0){
-
-    chapter_option = chapterMenu();
-
-    switch(chapter_option){
-
-      case 1:{
-        printChaptersList(*chapter_head);    
-        break;
-      }
-      case 2:
-      {
-        addChapterMenu(&*chapter_head);
-        writeChapterFile(serie_head);
-        break;
-      }
-      case 3:{
-        deleteChapterMenu(&*chapter_head);
-        writeChapterFile(serie_head);
-        break;
-      }
-      case 4:
-      {
-        showChapter(*chapter_head);
-        break;
-      }
-      default:
-      {
-        cout << "AVISO: Regresando al menu de temporadas!\n";
-        break;
-      }
-    }
-  }
-}
-
