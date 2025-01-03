@@ -10,8 +10,14 @@ using  sizeType = std::string::size_type;
 
 /* FUNCIONES DE VALIDACION DE TIPO BOOLEANO*/
 
-/* ESTA FUNCION VALIDA LA EDAD DEL USUARIO */
+/*
+  @brief Valida la edad ingresada por el usuario.
 
+  @param word Dato de tipo cadena.
+
+  @return bool Validacion de la edad.
+
+*/
 bool checkIntDataYearsOld(string word){
 
     if (word.empty()) return false;
@@ -27,6 +33,14 @@ bool checkIntDataYearsOld(string word){
 
 /* ESTA FUNCION VALIDA EL CORREO DEL USUARIO */
 
+/*
+  @brief Valida el correo ingresado por el usuario.
+
+  @param email Dato de tipo cadena.
+
+  @return bool Validacion del email.
+
+*/
 bool checkUserEmail(string email){
 
     if (email.empty()) return false;
@@ -38,6 +52,14 @@ bool checkUserEmail(string email){
     return false;
 }
 
+/*
+  @brief Valida del ID ingresado por el usuario.
+
+  @param word Dato de tipo cadena.
+
+  @return bool Validacion del ID.
+
+*/
 bool checkIntUserId(string word){
 
     if (word.empty()) return false;
@@ -55,8 +77,18 @@ bool checkIntUserId(string word){
 
 /* PROCEDIMIENTOS & FUNCIONES PARA LOS USUARIOS */
 
-/* Funcion que busca retornar un puntero que apunte a un elemento de tipo usuario */
+/*
 
+  @brief Reserva en la memoria un espacio para una variable de tipo Users.
+
+  @param email Dato de tipo cadena.
+  @param old Dato de tipo entero.
+  @param country Dato de tipo cadena.
+  @param id Dato de tipo entero.
+
+  @return Users Puntero de tipo Users.
+
+*/
 Users *createUser(string email, int old, string country, int id){
 
   Users *new_user = new Users;
@@ -449,4 +481,4 @@ string searchUserMenu(){
   return email;
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////    
