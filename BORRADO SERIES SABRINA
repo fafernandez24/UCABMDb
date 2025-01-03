@@ -1,0 +1,22 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+struct Serie {
+    string name;
+    int premiere;
+    string type;
+    int id;
+};
+
+void deleteSerie(list<Serie>& series, int serie_id) {
+    for (auto it = series.begin(); it != series.end(); ++it) {
+        if (it->id == serie_id) {
+            series.erase(it);
+            cout << "Serie with ID " << serie_id << " has been deleted." << endl;
+            return;
+        }
+    }
+    cout << "Serie with ID " << serie_id << " not found." << endl;
+}
