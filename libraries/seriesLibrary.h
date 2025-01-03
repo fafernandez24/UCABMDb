@@ -394,7 +394,7 @@ void addSerieMenu(Serie **serie_head){
 
 /* PROCEDIMIENTO DEL MENU PARA BUSCAR LA SERIE */
 
-string searchSerie(){
+string searchSerieMenu(){
 
   cout << "========================================\n";
   cout << "              SEARCH SERIE              \n";
