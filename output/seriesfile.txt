@@ -24,3 +24,98 @@ GT
 1996
 Anime
 200004
+
+Arcane: League of Legends
+2021
+Aventura
+200005
+
+Fallout
+2024
+Supervivencia, Acciï¿½n, Aventura, Drama
+200006
+
+Secret Level
+2024
+Acciï¿½n, Aventura, Animaciï¿½n, Fantasï¿½a
+200007
+
+Dan da dan: Primer encuentro
+2024
+Anime
+200008
+
+El juego del calamar
+2021
+Korean Drama, Thriller, Misterio, Acciï¿½n
+200009
+
+Loki
+2021
+Superhï¿½roes, Aventura, Acciï¿½n, Fantasï¿½a
+200010
+
+Breaking Bad
+2008
+Crimen, Drama, Thriller
+200011
+
+Peaky Blinders
+2013
+Crimen, Drama, Gangster
+200012
+
+The boys
+2019
+Acciï¿½n, Comedia, Crimen, Superhï¿½roes, Drama
+200013
+
+Stranger Things
+2016
+Fantasï¿½a, Horror, Drama
+200014
+
+The Last of Us
+2023
+Drama
+200015
+
+Hawkeye
+2021
+Acciï¿½n, Superhï¿½roes
+800000
+
+Avatar: La Leyenda de Aang
+2024
+Acciï¿½n, Aventura, Drama
+200016
+
+Kaiju No.8
+2024
+Anime
+200017
+
+M s all  del Jard¡n
+2014
+Aventura, Animaci¢n, Terror, Fantas¡a
+200018
+
+Sr. y Sra. Smith
+2024
+Acci¢n
+150000
+
+Peacemaker
+2022
+Acci¢n
+200019
+
+One Piece
+2023
+Acci¢n, Aventura
+200020
+
+Cyberpunk: Edgerunners
+2022
+Anime
+190000
