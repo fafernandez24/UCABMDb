@@ -7,9 +7,8 @@ using namespace std;
 
 // STRUCT
 
-/*El siguiente struct sirve para almacenar el conjunto de elementos de los usuarios
-  como el correo, la edad, el pais, la calificaciones y las reseñas.*/
 
+// @brief Define los elementos de la estructura usuario.
 struct Users{
     string email;
     int years_old;
@@ -21,9 +20,7 @@ struct Users{
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-/*El siguiente struct sirve para almacenar el conjunto de elementos de las peliculas
-  como el nombre, la fecha de estreno, el genero, la duracion y el pais.*/
-  
+// @brief Define los elementos de la estructura pelicula.  
 struct Movie{
     string movie_name;
     int movie_premiere;
@@ -36,6 +33,8 @@ struct Movie{
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
+
+// @brief Define los elementos de la estructura capitulo.
 struct Chapter{
 
     string chapter_name;
@@ -48,6 +47,7 @@ struct Chapter{
 
 };
 
+// @brief Define los elementos de la estructura temporada.
 struct Season{
 
     string season_name;
@@ -59,6 +59,7 @@ struct Season{
 
 };
 
+// @brief Define los elementos de la estructura serie.
 struct Serie{
 
     string serie_name;
@@ -73,6 +74,7 @@ struct Serie{
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
+// @brief Define los elementos de la estructura calificacion en pelicula.
 struct MovieCalification{
 
     string movie_name;
@@ -86,6 +88,7 @@ struct MovieCalification{
 
 };
 
+// @brief Define los elementos de la estructura reseña en pelicula.
 struct MovieReview{
 
     string movie_name;
@@ -101,3 +104,62 @@ struct MovieReview{
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////
+
+// @brief Define los elementos de la estructura calificacion en serie.
+struct SerieCalification{
+
+    string serie_name;
+    string user_email;
+    float calification;
+    int id;
+
+    Serie *serie;
+    Users *user;
+    SerieCalification *next_calification;
+
+};
+
+// @brief Define los elementos de la estructura reseña en serie.
+struct SerieReview{
+
+    string serie_name;
+    string user_email;
+    string review;
+    int id;
+
+    Serie *serie;
+    Users *user;
+
+    SerieReview *next_review;
+
+};
+
+// @brief Define los elementos de la estructura calificacion en una temporada.
+struct SeasonCalification{
+
+    string serie_name;
+    string season_name;
+    string user_email;
+    float calification;
+    int id;
+
+    Season *season;
+    Users *user;
+    SeasonCalification *next_calification;
+
+};
+
+// @brief Define los elementos de la estructura calificacion en un capitulo.
+struct ChapterCalification{
+
+    string serie_name;
+    string chapter_name;
+    string user_email;
+    float calification;
+    int id;
+
+    Chapter *chapter;
+    Users *user;
+    ChapterCalification *next_calification;
+
+};
