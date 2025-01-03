@@ -32,12 +32,12 @@ Aventura
 
 Fallout
 2024
-Supervivencia, Acciï¿½n, Aventura, Drama
+Supervivencia, Accion, Aventura, Drama
 200006
 
 Secret Level
 2024
-Acciï¿½n, Aventura, Animaciï¿½n, Fantasï¿½a
+Accion, Aventura, Animacion, Fantasia
 200007
 
 Dan da dan: Primer encuentro
@@ -47,12 +47,12 @@ Anime
 
 El juego del calamar
 2021
-Korean Drama, Thriller, Misterio, Acciï¿½n
+Korean Drama, Thriller, Misterio, Accion
 200009
 
 Loki
 2021
-Superhï¿½roes, Aventura, Acciï¿½n, Fantasï¿½a
+Superheroes, Aventura, Accion, Fantasia
 200010
 
 Breaking Bad
@@ -67,12 +67,12 @@ Crimen, Drama, Gangster
 
 The boys
 2019
-Acciï¿½n, Comedia, Crimen, Superhï¿½roes, Drama
+Accionn, Comedia, Crimen, Superheroes, Drama
 200013
 
 Stranger Things
 2016
-Fantasï¿½a, Horror, Drama
+Fantasia, Horror, Drama
 200014
 
 The Last of Us
@@ -82,12 +82,12 @@ Drama
 
 Hawkeye
 2021
-Acciï¿½n, Superhï¿½roes
+Accionn, Superheroes
 800000
 
 Avatar: La Leyenda de Aang
 2024
-Acciï¿½n, Aventura, Drama
+Accion, Aventura, Drama
 200016
 
 Kaiju No.8
@@ -95,24 +95,24 @@ Kaiju No.8
 Anime
 200017
 
-M s all  del Jard¡n
+MÂ s allÂ  del JardÂ¡n
 2014
-Aventura, Animaci¢n, Terror, Fantas¡a
+Aventura, Animacion, Terror, FantasÂ¡a
 200018
 
 Sr. y Sra. Smith
 2024
-Acci¢n
+Accion
 150000
 
 Peacemaker
 2022
-Acci¢n
+Accion
 200019
 
 One Piece
 2023
-Acci¢n, Aventura
+Accion, Aventura
 200020
 
 Cyberpunk: Edgerunners
