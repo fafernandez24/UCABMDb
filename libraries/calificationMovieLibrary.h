@@ -5,6 +5,20 @@
 
 using namespace std;
 
+float getCalification(){
+    float cali = 0;
+    do{
+        cout << "\tCalificacion: ";
+        cin >> cali;
+
+        if (cali < 0 || cali > 5){
+            cout << "ERROR. Ingresar un numer entre 0 y 5!\n";
+        }
+
+    } while (cali < 0 || cali > 5);
+    return cali;
+}
+
 bool checkIntMovieCalificationId(string word){
 
     if (word.empty()) return false;
@@ -53,15 +67,6 @@ bool findMovieCalificationBool(MovieCalification *cali_head, string movie_name ,
         }
     }
     return false;
-}
-
-float getCalification(){
-    float cali = 0;
-    do{
-        cout << "\tCalificacion: ";
-        cin >> cali;
-    } while (cali < 0 || cali > 5);
-    return cali;
 }
 
 int getMovieCalificationId(){
@@ -113,7 +118,7 @@ void addMovieCalification(MovieCalification **cali_head, float calification, int
 
 /* PROCEDIMIENTOS Y PROCEDIMIENTOS PARA BORRAR LAS CALIFICACIONES DE PELICULAS Y USUARIOS */
 
-int countNumCalificationInMovie(MovieCalification *cali_head, string movie_name){
+int countNumMovieCalificationInMovie(MovieCalification *cali_head, string movie_name){
     int count = 0;
     if (cali_head){
         MovieCalification *aux = cali_head;
@@ -125,7 +130,7 @@ int countNumCalificationInMovie(MovieCalification *cali_head, string movie_name)
     return count;
 }
 
-int countNumCalificationInUser(MovieCalification *cali_head, string user_email){
+int countNumMovieCalificationInUser(MovieCalification *cali_head, string user_email){
     int count = 0;
     if (cali_head){
         MovieCalification *aux = cali_head;
@@ -209,7 +214,7 @@ void deleteMovieCali(MovieCalification **cali_head, string movie_name){
         cout << "AVISO: No se encontraron calificaciones en esta pelicula!\n";
 }
 
-void deleteUserCali(MovieCalification **cali_head, string email){
+void deleteUserMovieCali(MovieCalification **cali_head, string email){
 
     if (*cali_head){
         
@@ -245,7 +250,7 @@ void deleteUserCali(MovieCalification **cali_head, string email){
 
 /* PROCEDIMIENTO PARA LA LECTURA DE ARCHIVOS PARA CALIFICACIONES */
 
-void readCaliFile(MovieCalification **cali_head, Movie *movie_head, Users *user_head){
+void readMovieCaliFile(MovieCalification **cali_head, Movie *movie_head, Users *user_head){
 
   ifstream file;
   string text, movie_name, user_email;
@@ -255,16 +260,16 @@ void readCaliFile(MovieCalification **cali_head, Movie *movie_head, Users *user_
   Movie *movie = NULL;
   Users *user = NULL;
 
-  file.open("califile.txt", ios::in);
+  file.open("calimoviesfile.txt", ios::in);
 
   if (file.fail()){
-      cout << "ERROR. No se pudo abrir el archivo de CALIFICACIONES!\n";
+      cout << "ERROR. No se pudo abrir el archivo de CALIFICACIONES EN PELICULAS!\n";
       exit(1);
   }
 
   getline(file, text);
 
-    if (text == "CALIFICATIONS"){
+    if (text == "MOVIES CALIFICATIONS"){
 
         while(!file.eof()){
 
@@ -294,7 +299,7 @@ void readCaliFile(MovieCalification **cali_head, Movie *movie_head, Users *user_
     }
     else{
         cout << "\nERROR. Dato invalidos en el archivo!\n";
-        cout << "AVISO: No se cargaron los datos del archivo de calificaciones!\n\n";
+        cout << "AVISO: No se cargaron los datos del archivo de calificaciones en peliculas!\n\n";
     }
 
     file.close();
@@ -302,11 +307,11 @@ void readCaliFile(MovieCalification **cali_head, Movie *movie_head, Users *user_
 
 /* PROCEDIMIENTO PARA LA ESCRITURA DE ARCHIVOS EN CALIFICACIONES */
 
-void addCaliToFile(string movie_name, string user_email, float calification, int id){
+void addMovieCaliToFile(string movie_name, string user_email, float calification, int id){
 
   ofstream file;
 
-  file.open("califile.txt", ios::app);
+  file.open("calimoviesfile.txt", ios::app);
 
   if (file.fail()){
       cout << "ERROR. No se pudo abrir el archivo";
@@ -322,12 +327,12 @@ void addCaliToFile(string movie_name, string user_email, float calification, int
   file.close();
 }
 
-void writeCaliFile(MovieCalification *cali_head){
+void writeMovieCaliFile(MovieCalification *cali_head){
 
     if (cali_head){
 
         ofstream file;
-        file.open("califile.txt", ios::out);
+        file.open("calimoviesfile.txt", ios::out);
 
         if (file.fail()){
         cout << "ERROR. No se pudo abrir el archivo\n";
@@ -355,7 +360,7 @@ void writeCaliFile(MovieCalification *cali_head){
     }
     else{
         ofstream file;
-        file.open("califile.txt", ios::out);
+        file.open("calimoviesfile.txt", ios::out);
 
         if (file.fail()){
         cout << "ERROR. No se pudo abrir el archivo\n";
@@ -408,7 +413,7 @@ void addMovieCalificationMenu(MovieCalification **cali_head, Movie *movie_head, 
         }
         else editMovieCalification(*cali_head, calification, movie_name, user_email);
         
-        writeCaliFile(*cali_head);
+        writeMovieCaliFile(*cali_head);
 
     }
     else 
@@ -428,14 +433,14 @@ void deleteMovieCalificationMenu(MovieCalification **cali_head){
 
     if (cali_exist == true){
         deleteMovieCalification(&*cali_head, movie_name, user_email);
-        writeCaliFile(*cali_head);
+        writeMovieCaliFile(*cali_head);
         cout << "AVISO: La calificacion ha sido borrada con exito!\n";
     }
     else 
         cout << "ERROR. La calificacion ingresada no ha sido encontrada!\n";
 }
 
-int calificationsMenu(){
+int calificationMovieMenu(){
 
     string menu = " ";
 
@@ -461,13 +466,13 @@ int calificationsMenu(){
     return stoi(menu);
 }
 
-void printCalificationInUser(MovieCalification *cali_head, string email){
+void printMovieCalificationInUser(MovieCalification *cali_head, string email){
 
     cout << "========================================\n";
     cout << "          USER CALIFICATIONS            \n";
     cout << "========================================\n";    
 
-    if (countNumCalificationInUser(cali_head, email) > 0){
+    if (countNumMovieCalificationInUser(cali_head, email) > 0){
 
         MovieCalification *aux = cali_head;
     
@@ -488,13 +493,13 @@ void printCalificationInUser(MovieCalification *cali_head, string email){
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-void printCalificationInMovie(MovieCalification *cali_head, string movie_name){
+void printMovieCalificationInMovie(MovieCalification *cali_head, string movie_name){
 
     cout << "========================================\n";
     cout << "             CALIFICATIONS              \n";
     cout << "========================================\n";
 
-    if (countNumCalificationInMovie(cali_head, movie_name) > 0){
+    if (countNumMovieCalificationInMovie(cali_head, movie_name) > 0){
 
         MovieCalification *aux = cali_head;
         
