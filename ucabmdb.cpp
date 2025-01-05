@@ -1,4 +1,4 @@
-// UCABMDB
+// UCABMDb
 // @author Freddy Fernández
 
 #include <iostream>
@@ -16,13 +16,13 @@ int main(){
   Movie *movie_list = NULL; // LISTA DE USUARIOS
   Serie *serie_list = NULL; // LISTA DE SERIES
 
-  MovieCalification *calification_movies_list = NULL;
-  MovieReview *review_movies_list = NULL;
+  MovieCalification *calification_movies_list = NULL; // LISTA DE CALIFICACIONES EN PELICULAS
+  MovieReview *review_movies_list = NULL; // LISTA DE RESEÑAS EN PELICULAS
 
-  SerieCalification *calification_series_list = NULL;
-  SerieReview *review_series_list = NULL;
-  SeasonCalification *calification_seasons_list = NULL; 
-  ChapterCalification *calification_chapter_list = NULL;
+  SerieCalification *calification_series_list = NULL; // LISTA DE CALIFICACIONES EN SERIES
+  SerieReview *review_series_list = NULL; // LISTA DE RESEÑAS EN SERIES
+  SeasonReview *review_seasons_list = NULL; // LISTA DE RESEÑAS EN TEMPORADAS
+  ChapterReview *review_chapter_list = NULL; // LISTA DE RESEÑAS EN CAPITULOS
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -38,8 +38,8 @@ int main(){
 
   readSerieCaliFile(&calification_series_list, serie_list, users_list);
   readSerieReviewFile(&review_series_list, serie_list, users_list);
-  readSeasonCaliFile(&calification_seasons_list, serie_list, users_list);
-  readChapterCaliFile(&calification_chapter_list, serie_list, users_list);
+  readSeasonReviewFile(&review_seasons_list, serie_list, users_list);
+  readChapterReviewFile(&review_chapter_list, serie_list, users_list);
 
 
   int main_option = -1;
@@ -181,12 +181,11 @@ int main(){
               break;
             }
             case 3:{
-              cout << "ELIMINAR SERIE\n";
-              cout << "COMING SOON\n";
+              deleteSerieMenu(&serie_list, &calification_series_list, &review_series_list, &review_seasons_list, &review_chapter_list);
               break;
             }
             case 4:{
-              printSerie(&serie_list, calification_series_list, review_series_list, &calification_seasons_list, &calification_chapter_list, users_list);
+              printSerie(&serie_list, calification_series_list, review_series_list, &review_seasons_list, &review_chapter_list, users_list);
               break;
             }
             case 5:
@@ -305,7 +304,7 @@ int main(){
             }
             case 4:
             {
-              printUser(users_list, calification_movies_list, review_movies_list, calification_series_list, review_series_list, calification_seasons_list, calification_chapter_list);
+              printUser(users_list, calification_movies_list, review_movies_list, calification_series_list, review_series_list, review_seasons_list, review_chapter_list);
               break;
             }
             default:
