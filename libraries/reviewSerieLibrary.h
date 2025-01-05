@@ -1,3 +1,5 @@
+// @author Freddy Fernández
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -31,14 +33,14 @@ bool findSerieReviewBool(SerieReview *review_head, string serie_name , string us
 }
 
 /*
-    Funcion que retorna la cantidad de reseñas que tenga una pelicula.
+    Funcion que retorna la cantidad de reseñas que tenga una serie.
 
-    @param *review_head Es un puntero de la estructura MovieReview que señala a la cabeza de la lista de reseñas designadas a peliculas.
-    @param movie_name Es un dato de tipo cadena que maneja como contenido el nombre de la pelicula a la que se hizo reseña.
+    @param *review_head Es un puntero de la estructura SerieReview que señala a la cabeza de la lista de reseñas designadas a series.
+    @param serie_name Es un dato de tipo cadena que maneja como contenido el nombre de la serie a la que se hizo reseña.
 
     @return La funcion retorna la variable count que segun tal condicion puede retornar 0 o un numero mayor.
 */
-int countSerieReviewBySerie(SerieReview *review_head, string serie_name){
+int countNumSerieReviewInSerie(SerieReview *review_head, string serie_name){
     int count = 0;
     if (review_head){
         SerieReview *aux = review_head;
@@ -51,9 +53,9 @@ int countSerieReviewBySerie(SerieReview *review_head, string serie_name){
 }
 
 /*
-    Funcion que retorna la cantidad de reseñas que tenga una pelicula.
+    Funcion que retorna la cantidad de reseñas que tenga una serie.
 
-    @param *review_head Es un puntero de la estructura MovieReview que señala a la cabeza de la lista de reseñas designadas a peliculas.
+    @param *review_head Es un puntero de la estructura SerieReview que señala a la cabeza de la lista de reseñas designadas a series.
     @param user_email Es un dato de tipo cadena que maneja como contenido el email del usuario que hizo la reseña.
 
     @return La funcion retorna una variable de tipo entero llamada count que segun tal condicion puede retornar 0 o un numero mayor.
@@ -187,17 +189,14 @@ void deleteSerieReviewByUser(SerieReview **review_head, string user_email){
 
             SerieReview *aux2 = NULL;
 
-            while (aux){
+            while (aux->user_email != user_email){
                 aux2 = aux;
                 aux = aux -> next_review;
-                if (aux->user_email == user_email) break;
             }
 
-            if (aux->user_email == user_email){
-                aux2 -> next_review = aux -> next_review;
-                delete(aux);
-            }
-            else cout << "ERROR. No se encontraron reviews de este usuario.\n";
+            aux2 -> next_review = aux -> next_review;
+            delete(aux);
+        
         }
     }
     else{
@@ -228,7 +227,7 @@ int reviewSerieMenu(){
         cout << "(1) Mostrar reviews \n";
         cout << "(2) Agregar review\n";
         cout << "(3) Borrar review\n";
-        cout << "(0) Volver a peliculas\n";
+        cout << "(0) Volver a series\n";
         cout << "========================================\n";
         cout << " Opcion: ";
         cin >> menu;
@@ -251,7 +250,7 @@ void printSerieReviewsInSerie(SerieReview *review_head, string serie_name){
     cout << "              SERIE REVIEWS             \n";
     cout << "========================================\n";
 
-    if (countSerieReviewBySerie(review_head, serie_name) > 0){
+    if (countNumSerieReviewInSerie(review_head, serie_name) > 0){
 
         SerieReview *aux = review_head;
         
@@ -334,7 +333,7 @@ void readSerieReviewFile(SerieReview **review_head, Serie *serie_head, Users *us
   file.open("reviewseriefile.txt", ios::in);
 
   if (file.fail()){
-      cout << "ERROR. No se pudo abrir el archivo de REVIEWS EN PELICULAS!\n";
+      cout << "ERROR. No se pudo abrir el archivo de REVIEWS EN serieS!\n";
       exit(1);
   }
 
@@ -370,7 +369,7 @@ void readSerieReviewFile(SerieReview **review_head, Serie *serie_head, Users *us
     }
     else{
         cout << "\nERROR. Dato invalidos en el archivo!\n";
-        cout << "AVISO: No se cargaron los datos del archivo de reviews en peliculas!\n\n";
+        cout << "AVISO: No se cargaron los datos del archivo de reviews en series!\n\n";
     }
 
     file.close();
@@ -449,7 +448,7 @@ void addSerieReviewMenu(SerieReview **review_head, Serie *serie_head, Users *use
     cout << "========================================\n";
     string serie_name = getSerieName();
     string user_email = getUsersEmail();
-    string review = getMovieReview();
+    string review = getSerieReview();
     int id = getSerieCalificationId();
     cout << "========================================\n";
 
@@ -475,7 +474,7 @@ void addSerieReviewMenu(SerieReview **review_head, Serie *serie_head, Users *use
 
     }
     else 
-        cout << "ERROR. La pelicula o el usuario ingresado no han sido encontrados!\n";
+        cout << "ERROR. La serie o el usuario ingresado no han sido encontrados!\n";
 }
 
 void deleteSerieReviewMenu(SerieReview **review_head){
