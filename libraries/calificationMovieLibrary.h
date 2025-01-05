@@ -344,7 +344,7 @@ void writeMovieCaliFile(MovieCalification *cali_head){
 
         MovieCalification *aux = cali_head;
 
-        file << "CALIFICATIONS\n\n";
+        file << "MOVIES CALIFICATIONS\n\n";
 
         while(aux){
 
@@ -369,7 +369,7 @@ void writeMovieCaliFile(MovieCalification *cali_head){
         exit(1);
         }
         else{
-        file << "CALIFICATIONS\n\n";
+        file << "MOVIES CALIFICATIONS\n\n";
         }
     }
 }
