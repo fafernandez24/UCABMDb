@@ -1,3 +1,5 @@
+// @author Freddy Fernández
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -70,14 +72,28 @@ int countReviewByUser(MovieReview *review_head, string user_email){
     return count;
 }
 
+bool checkReviewLength(string text){
+    if (text.length() > 0 && text.length() < 251) return true;
+    return false;
+}
+
 /* Funcion para obtener una reseña */
 string getMovieReview(){
 
-  string review;
-  cin.ignore();
-  cout << "\tReview: ";
-  getline(cin, review);
-  return review;
+    string review;
+    bool bol = false;
+    
+    while (bol == false){
+
+        cin.ignore();
+        cout << "\tReview: ";
+        getline(cin, review);
+
+        bol = checkReviewLength(review);
+        
+        if (bol == false) cout << "ERROR. Ingresar un maximo de 250 caracteres!\n";
+    }
+    return review;
 } 
 
 MovieReview *createMovieReview(string review, int id, Movie *movie, Users *user){
