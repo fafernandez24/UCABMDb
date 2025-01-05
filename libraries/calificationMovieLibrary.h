@@ -1,3 +1,5 @@
+// @author Freddy Fernández
+
 #include <iostream>
 #include <fstream>
 #include <string>
