@@ -3,7 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "calificationChapterLibrary.h"
+#include "reviewChapterLibrary.h"
 
 using namespace std;
 
@@ -22,6 +22,75 @@ void welcomeScreenUCABMDb(){
   system("cls");
   cout << endl;
 
+}
+
+/*
+  @brief Borra al usuario indicado y todas las calificaciones y reseñas que tenga.
+
+  @param users_head Puntero cabeza de la lista de usuarios.
+  @param cali_head Puntero cabeza de la lista de calificaciones en peliculas.
+  @param review_head Puntero cabeza de la lista de reseñas en peliculas.
+  @param cali_serie_head Puntero cabeza de la lista de calificaciones en series.
+  @param review_serie_head Puntero cabeza de la lista de reseñas en series.
+  @param review_season_head Puntero cabeza de la lista de reseñas en temporadas.
+  @param review_chapter_head Puntero cabeza de la lista de reseñas en capitulos.
+
+*/
+void deleteUsersMenu(Users **users_head, MovieCalification **cali_head, MovieReview **review_head, SerieCalification **cali_serie_head, SerieReview **review_serie_head, SeasonReview **review_season_head, ChapterReview **review_chapter_head){
+
+  cout << "========================================\n";
+  cout << "              DELETE USER               \n";
+  cout << "========================================\n";
+  string email = getUsersEmail();
+  cout << "========================================\n";
+
+  bool users_exist = findUsers(*users_head, email);
+
+  if (users_exist == true){
+
+    int count_cali = countNumMovieCalificationInUser(*cali_head, email), count_review = countReviewByUser(*review_head, email);
+
+    int count_cali_serie = countNumSerieCalificationInUser(*cali_serie_head, email), count_review_serie = countNumSerieReviewInUser(*review_serie_head, email); 
+
+    int count_review_season = countNumSeasonReviewInUser(*review_season_head, email), count_review_chapter = countNumChapterReviewInUser(*review_chapter_head, email);
+
+    for (int i = 0; i < count_cali; ++i){
+      deleteUserMovieCali(&*cali_head, email);
+    }
+
+    for (int i = 0; i < count_review; ++i){
+      deleteMovieReviewByUser(&*review_head, email);
+    }
+
+    for (int i = 0; i < count_cali_serie; ++i){
+      deleteUserSerieCali(&*cali_serie_head, email);
+    }
+
+    for (int i = 0; i < count_review_serie; ++i){
+      deleteSerieReviewByUser(&*review_serie_head, email);
+    }
+
+    for (int i = 0; i < count_review_season; ++i){
+      deleteSeasonRevByUser(&*review_season_head, email);
+    }
+
+    for (int i = 0; i < count_review_chapter; ++i){
+      deleteChapterRevByUser(&*review_chapter_head, email);
+    }
+
+    deleteUsers(&*users_head, email);
+
+    writeUsersFile(*users_head);
+    writeMovieCaliFile(*cali_head);
+    writeReviewFile(*review_head);
+    writeSerieCaliFile(*cali_serie_head);
+    writeSerieReviewFile(*review_serie_head);
+    writeSeasonReviewFile(*review_season_head);
+    writeChapterReviewFile(*review_chapter_head);
+
+    cout << "AVISO: El usuario se borro correctamente!\n";
+  }
+  else cout << "ERROR. El usuario no se pudo encontrar!\n";
 }
 
 /*
@@ -65,37 +134,161 @@ void deleteMovieMenu(Movie **movie_head, MovieCalification **cali_head, MovieRev
   else cout << "ERROR. No se encontro la pelicula!\n";
 }
 
-void deleteUsersMenu(Users **users_head, MovieCalification **cali_head, MovieReview **review_head){
+/*
+
+  @brief Borra el capitulo indicado y toda reseña que tenga.
+
+  @param chapter_head Puntero cabeza de la lista de capitulos.
+  @param review_head Puntero cabeza de la lista de reseñas en capitulos.
+  @param serie_head Puntero cabeza de la lista de series.
+  @param serie_name Nombre de la serie a la que pertenece el capitulo.
+
+*/
+void deleteChapterMenu(Chapter **chapter_head, ChapterReview **review_head, Serie *serie_head, string serie_name){
 
   cout << "========================================\n";
-  cout << "              DELETE USER               \n";
+  cout << "              DELETE CHAPTER             \n";
   cout << "========================================\n";
-  string email = getUsersEmail();
+  string chapter_name = getChapterName();
   cout << "========================================\n";
 
-  bool users_exist = findUsers(*users_head, email);
+  bool chapter_exist = findChapterByName(*chapter_head, chapter_name);
 
-  if (users_exist == true){
+  if (chapter_exist == true){
 
-    int count_cali = countNumMovieCalificationInUser(*cali_head, email), count_review = countReviewByUser(*review_head, email);
 
-    for (int i = 0; i < count_cali; ++i){
-      deleteUserMovieCali(&*cali_head, email);
-    }
+    int count_review = countNumChapterReviewInChapter(*review_head, chapter_name);
 
     for (int i = 0; i < count_review; ++i){
-      deleteMovieReviewByUser(&*review_head, email);
+      deleteChapterRev(&*review_head, chapter_name, serie_name);
     }
 
-    deleteUsers(&*users_head, email);
+    deleteChapter(&*chapter_head, chapter_name);
 
-    writeUsersFile(*users_head);
-    writeMovieCaliFile(*cali_head);
-    writeReviewFile(*review_head);
-
-    cout << "AVISO: El usuario se borro correctamente!\n";
+    writeChapterFile(serie_head);
+    writeChapterReviewFile(*review_head);
+    cout << "AVISO: El capitulo se borro correctamente!\n";
   }
-  else cout << "ERROR. El usuario no se pudo encontrar!\n";
+  else cout << "ERROR. No se encontro el capitulo!\n";
+}
+
+/*
+
+  @brief Borra la temporada indicada y todas las reseñas que tenga.
+
+  @param season_head Puntero cabeza de la lista de temporadas.
+  @param season_review_head Puntero cabeza de la lista de reseñas en temporadas.
+  @param chapter_review_head Puntero cabeza de la lista de reseñas en capitulos.
+  @param serie_head Puntero cabeza de la lista de series.
+  @param serie_name Nombre de la serie a la que pertenece la temporada.
+
+*/
+void deleteSeasonMenu(Season **season_head, SeasonReview **season_review_head, ChapterReview **chapter_review_head, Serie *serie_head, string serie_name){
+
+  cout << "========================================\n";
+  cout << "              DELETE SEASON             \n";
+  cout << "========================================\n";
+  string season_name = getSeasonName();
+  cout << "========================================\n";
+
+  bool season_exist = findSeasonByName(*season_head, season_name);
+
+  if (season_exist == true){
+
+    Season *aux = *season_head;
+
+    while (aux->season_name != season_name) aux = aux->next_season;
+
+    Chapter *aux2 = aux->chapters_head;
+
+    while (aux2){
+
+      int count_review = countNumChapterReviewInChapter(*chapter_review_head, aux2->chapter_name);
+
+      for (int i = 0; i < count_review; ++i){
+        deleteChapterRev(&*chapter_review_head, serie_name, aux2->chapter_name);
+      }
+      aux2 = aux2->next_chapter;
+    }
+
+    int count_season_review = countNumSeasonReviewInSeason(*season_review_head, season_name);
+
+    for (int j = 0; j < count_season_review; ++j){
+      deleteSeasonRev(&*season_review_head, serie_name, season_name);
+    }
+
+    deleteSeason(&*season_head, season_name);
+
+    writeSeasonsFile(serie_head);
+    writeSeasonReviewFile(*season_review_head);
+    writeChapterFile(serie_head);
+    writeChapterReviewFile(*chapter_review_head);
+
+    cout << "AVISO: La temporada se borro correctamente!\n";
+  }
+  else cout << "ERROR. No se encontro la temporada!\n";
+}
+
+/*
+
+  @brief Borra la serie indicada y todas las calificaciones y reseñas que tenga.
+
+  @param serie_head Puntero cabeza de la lista de series.
+  @param serie_cali_head Puntero cabeza de la lista de calificaciones en series.
+  @param serie_rev_head Puntero cabeza de la lista de reseñas en series.
+  @param season_rev_head Puntero cabeza de la lista de reseñas en temporadas.
+  @param chapter_rev_head Puntero cabeza de la lista de reseñas en capitulos.
+
+*/
+void deleteSerieMenu(Serie **serie_head, SerieCalification **serie_cali_head, SerieReview **serie_rev_head, SeasonReview **season_rev_head, ChapterReview **chapter_rev_head){
+
+  cout << "========================================\n";
+  cout << "               DELETE SERIE             \n";
+  cout << "========================================\n";
+  string serie_name = getSerieName();
+  cout << "========================================\n";
+
+  bool bol = findSerieByName(*serie_head, serie_name);
+
+  if (bol == true){
+
+    int count_cali_serie = countNumSerieCalificationInSerie(*serie_cali_head, serie_name);
+    int count_rev_serie = countNumSerieReviewInSerie(*serie_rev_head, serie_name);
+
+    int count_rev_season = countNumSeasonReviewInSerie(*season_rev_head, serie_name);
+    int count_rev_chapter = countNumChapterReviewInSerie(*chapter_rev_head, serie_name);
+
+    for (int i = 0; i < count_rev_chapter; ++i){
+      deleteChapterRevBySerie(&*chapter_rev_head, serie_name);
+    }
+
+    for (int i = 0; i < count_rev_season; ++i){
+      deleteSeasonRevBySerie(&*season_rev_head, serie_name);
+    }
+
+    for (int i = 0; i < count_rev_serie; ++i){
+      deleteSerieReviewBySerie(&*serie_rev_head, serie_name);
+    }
+
+    for (int i = 0; i < count_cali_serie; ++i){
+      deleteSerieCali(&*serie_cali_head, serie_name);
+    }
+
+    deleteSerie(&*serie_head, serie_name);
+
+    writeSerieFile(*serie_head);
+    writeSerieCaliFile(*serie_cali_head);
+    writeSerieReviewFile(*serie_rev_head);
+
+    writeSeasonsFile(*serie_head);
+    writeSeasonReviewFile(*season_rev_head);
+    writeChapterFile(*serie_head);
+    writeChapterReviewFile(*chapter_rev_head);
+
+  }
+  else{
+    cout << "ERROR. No se encontro la serie!\n";
+  }
 }
 
 /* FUNCIONES */
@@ -127,6 +320,10 @@ int mainMenu(){
   return -1;
 }
 
+/*
+  @brief Imprime el menu de calificaciones y reseñas hechas por el usuario.
+  @return int Entrada de tipo entero ingresada por el usuario.
+*/
 int caliAndReviewMenu(){
 
   string menu;
@@ -138,8 +335,8 @@ int caliAndReviewMenu(){
   cout << "(2) Reviews de las peliculas\n";
   cout << "(3) Calificaciones de las series\n";
   cout << "(4) Reviews de las series\n";
-  cout << "(5) Calificaciones de las temporadas\n";
-  cout << "(6) Calificaciones de los capitulos\n";
+  cout << "(5) Reviews de las temporadas\n";
+  cout << "(6) Reviews de los capitulos\n";
   cout << "(0) Salir\n";
   cout << "========================================\n";
   cout << "Ingresar opcion: ";
@@ -153,7 +350,20 @@ int caliAndReviewMenu(){
   return -1;
 }
 
-void searchUsers(Users *users_head, MovieCalification *cali_movie_head, MovieReview *review_movie_head, SerieCalification *cali_serie_head, SerieReview *review_serie_head, SeasonCalification *cali_season_head, ChapterCalification *cali_chapter_head, string user_email){
+/*
+  @brief Imprime el usuario indicado y despliega un sub-menu para ver las calificaciones y reseñas hechas por el usuario.
+
+  @param users_head Puntero cabeza de la lista de usuarios.
+  @param cali_movie_head Puntero cabeza de la lista de calificaciones en peliculas.
+  @param review_movie_head Puntero cabeza de la lista de reseñas en peliculas.
+  @param cali_serie_head Puntero cabeza de la lista de calificaciones en series.
+  @param review_serie_head Puntero cabeza de la lista de reseñas en series.
+  @param review_season_head Puntero cabeza de la lista de reseñas en temporadas.
+  @param review_chapter_head Puntero cabeza de la lista de reseñas en capitulos.
+  @param user_email Email del usuario a buscar.
+
+*/
+void searchUsers(Users *users_head, MovieCalification *cali_movie_head, MovieReview *review_movie_head, SerieCalification *cali_serie_head, SerieReview *review_serie_head, SeasonReview *review_season_head, ChapterReview *review_chapter_head, string user_email){
    
    if (users_head){
 
@@ -196,12 +406,12 @@ void searchUsers(Users *users_head, MovieCalification *cali_movie_head, MovieRev
           }
           case 5:
           {
-            printSeasonCalificationInUser(cali_season_head, user_email);
+            printSeasonReviewInUser(review_season_head, user_email);
             break;
           }
           case 6:
           {
-            printChapterCalificationInUser(cali_chapter_head, user_email);
+            printChapterReviewInUser(review_chapter_head, user_email);
             break;
           }
           default:
@@ -220,6 +430,15 @@ void searchUsers(Users *users_head, MovieCalification *cali_movie_head, MovieRev
    }
 }
 
+/*
+  @brief Imprime la pelicula indicada y despliega las calificaciones y reseñas hechas en la pelicula.
+
+  @param movie_head Puntero cabeza de la lista de peliculas.
+  @param cali_head Puntero cabeza de la lista de calificaciones en peliculas.
+  @param review_head Puntero cabeza de la lista de reseñas en peliculas.
+  @param name Nombre de la pelicula a buscar.
+
+*/
 void searchMovie(Movie *movie_head, MovieCalification *cali_head, MovieReview *review_head, string name){
    
    if (movie_head){
@@ -241,6 +460,15 @@ void searchMovie(Movie *movie_head, MovieCalification *cali_head, MovieReview *r
    }
 }
 
+/*
+  @brief Imprime la serie indicada y despliega las calificaciones y reseñas hechas en la serie.
+
+  @param serie_head Puntero cabeza de la lista de series.
+  @param cali_head Puntero cabeza de la lista de calificaciones en series.
+  @param review_head Puntero cabeza de la lista de reseñas en series.
+  @param name Nombre de la serie a buscar.
+
+*/
 void searchSerie(Serie *serie_head, SerieCalification *cali_head, SerieReview *review_head, string name){
    
    if (serie_head){
@@ -264,7 +492,18 @@ void searchSerie(Serie *serie_head, SerieCalification *cali_head, SerieReview *r
    }
 }
 
-void driveChapters(Chapter **chapter_head, Serie *serie_head, ChapterCalification **calification_chapter_list, Users *user_head, string serie_name){
+/*
+
+  @brief Procedimiento para implementar el menu de capitulos y sus respectivas reseñas.
+
+  @param chapter_head Puntero cabeza de la lista de capitulos.
+  @param serie_head Puntero cabeza de la lista de series.
+  @param review_chapter_list Puntero cabeza de la lista de reseñas en capitulos.
+  @param user_head Puntero cabeza de la lista de usuarios.
+  @param serie_name Nombre de la serie a la que pertenece el capitulo.
+
+*/
+void driveChapters(Chapter **chapter_head, Serie *serie_head, ChapterReview **review_chapter_list, Users *user_head, string serie_name){
 
   int chapter_option = -1;
 
@@ -285,7 +524,7 @@ void driveChapters(Chapter **chapter_head, Serie *serie_head, ChapterCalificatio
         break;
       }
       case 3:{
-        deleteChapterMenu(&*chapter_head);
+        deleteChapterMenu(&*chapter_head, &*review_chapter_list, serie_head, serie_name);
         writeChapterFile(serie_head);
         break;
       }
@@ -297,43 +536,41 @@ void driveChapters(Chapter **chapter_head, Serie *serie_head, ChapterCalificatio
       case 5:
       {
 
-        int cali_menu = 0;
+        int rev_menu = 0;
 
         do{
 
-          cali_menu = calificationChapterMenu();
+          rev_menu = reviewChapterMenu();
 
-          switch(cali_menu){
+          switch(rev_menu){
 
             case 1:
             {
-              showChapterCalificationsBySerie(*calification_chapter_list, serie_name);
+              showChapterReviewBySerie(*review_chapter_list, serie_name);
               break;
             }
             case 2:
             {
-              addChapterCalificationMenu(&*calification_chapter_list, *chapter_head, user_head, serie_name);
+              addChapterReviewMenu(&*review_chapter_list, *chapter_head, user_head, serie_name);
               break;
             }
             case 3:
             {
-              deleteChapterCalificationMenu(&*calification_chapter_list);
+              deleteChapterReviewMenu(&*review_chapter_list);
               break;
             }
             default:
             {
-              if (cali_menu == 0) cout << "AVISO: Regresaste al menu de temporadas...\n";
+              if (rev_menu == 0) cout << "AVISO: Regresaste al menu de capitulos...\n";
               else cout << "VUELVE A INTENTAR\n"; 
               break;
             }
 
           }
 
-        }while (cali_menu != 0);
+        }while (rev_menu != 0);
 
         break;
-
-
 
       }
       default:
@@ -347,7 +584,17 @@ void driveChapters(Chapter **chapter_head, Serie *serie_head, ChapterCalificatio
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-void driveSeasons(Serie **serie, SeasonCalification **calification_season_list, ChapterCalification **calification_chapter_list, Serie *serie_head, Users *user_head){
+/*
+  @brief Procedimiento para implementar el menu de temporadas sus respectivos capitulos y reseñas.
+
+  @param serie Puntero de la serie que pertenece la temporada.
+  @param review_seasons_list Puntero cabeza de la lista de reseñas en temporadas.
+  @param review_chapter_list Puntero cabeza de la lista de reseñas en capitulos.
+  @param serie_head Puntero cabeza de la lista de series.
+  @param user_head Puntero cabeza de la lista de usuarios.
+
+*/
+void driveSeasons(Serie **serie, SeasonReview **review_seasons_list, ChapterReview **review_chapter_list, Serie *serie_head, Users *user_head){
 
   Serie *aux = *serie;
   Season *season_head = aux->season_head;
@@ -370,8 +617,7 @@ void driveSeasons(Serie **serie, SeasonCalification **calification_season_list, 
         break;
       }
       case 3:{
-        cout << "BORRAR TEMPORADA\n";
-        cout << "COMING SOON\n";
+        deleteSeasonMenu(&aux->season_head, &*review_seasons_list, &*review_chapter_list, serie_head, aux->serie_name);
         break;
       }
       case 4:
@@ -381,14 +627,14 @@ void driveSeasons(Serie **serie, SeasonCalification **calification_season_list, 
         if (findSeasonByName(aux->season_head, season_name) == true){
 
           printSeason(season_head, season_name);
-          printSeasonCalificationInSeason(*calification_season_list, season_name);
+          printSeasonReviewInSeason(*review_seasons_list, season_name);
 
           Season *aux2 = season_head;
 
           while (aux2->season_name != season_name) aux2 = aux2->next_season;
 
           printChaptersList(aux2->chapters_head);
-          driveChapters(&aux2->chapters_head, serie_head, &*calification_chapter_list, user_head, aux->serie_name);
+          driveChapters(&aux2->chapters_head, serie_head, &*review_chapter_list, user_head, aux->serie_name);
 
         }
         else{
@@ -399,39 +645,39 @@ void driveSeasons(Serie **serie, SeasonCalification **calification_season_list, 
       }
       case 5:
       {
-        int cali_menu = 0;
+        int rev_menu = 0;
 
         do{
 
-          cali_menu = calificationSeasonMenu();
+          rev_menu = reviewSeasonMenu();
 
-          switch(cali_menu){
+          switch(rev_menu){
 
             case 1:
             {
-              showSeasonCalificationsBySerie(*calification_season_list, aux->serie_name);
+              showSeasonReviewBySerie(*review_seasons_list, aux->serie_name);
               break;
             }
             case 2:
             {
-              addSeasonCalificationMenu(&*calification_season_list, season_head, user_head, aux->serie_name);
+              addSeasonReviewMenu(&*review_seasons_list, season_head, user_head, aux->serie_name);
               break;
             }
             case 3:
             {
-              deleteSeasonCalificationMenu(&*calification_season_list);
+              deleteSeasonReviewMenu(&*review_seasons_list);
               break;
             }
             default:
             {
-              if (cali_menu == 0) cout << "AVISO: Regresaste al menu de temporadas...\n";
+              if (rev_menu == 0) cout << "AVISO: Regresaste al menu de temporadas...\n";
               else cout << "VUELVE A INTENTAR\n"; 
               break;
             }
 
           }
 
-        }while (cali_menu != 0);
+        }while (rev_menu != 0);
 
         break;
       }
@@ -444,13 +690,15 @@ void driveSeasons(Serie **serie, SeasonCalification **calification_season_list, 
   }
 }
 
-void printUser(Users *user_head, MovieCalification *cali_movie_head, MovieReview *review_movie_head, SerieCalification *cali_serie_head, SerieReview *review_serie_head, SeasonCalification *cali_season_head, ChapterCalification *cali_chapter_head){
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+void printUser(Users *user_head, MovieCalification *cali_movie_head, MovieReview *review_movie_head, SerieCalification *cali_serie_head, SerieReview *review_serie_head, SeasonReview *review_season_head, ChapterReview *review_chapter_head){
 
   string user_email = searchUserMenu();
   bool bol = findUsers(user_head, user_email);
 
   if (bol == true)
-    searchUsers(user_head, cali_movie_head, review_movie_head, cali_serie_head, review_serie_head, cali_season_head, cali_chapter_head, user_email);
+    searchUsers(user_head, cali_movie_head, review_movie_head, cali_serie_head, review_serie_head, review_season_head, review_chapter_head, user_email);
   else 
     cout << "ERROR. No se encontro al usuario!\n";
 
@@ -468,7 +716,7 @@ void printMovie(Movie *movie_head, MovieCalification *cali_head, MovieReview *re
 
 }
 
-void printSerie(Serie **serie_head, SerieCalification *cali_head, SerieReview *review_head, SeasonCalification **calification_season_list, ChapterCalification **calification_chapter_list, Users *user_head){
+void printSerie(Serie **serie_head, SerieCalification *cali_head, SerieReview *review_head, SeasonReview **review_seasons_list, ChapterReview **review_chapter_list, Users *user_head){
 
   if (serie_head){
 
@@ -483,7 +731,7 @@ void printSerie(Serie **serie_head, SerieCalification *cali_head, SerieReview *r
       Serie *aux = getSerieNodeByName(*serie_head, serie_name);
       
       printSeasonsList(aux);
-      driveSeasons(&aux, &*calification_season_list, &*calification_chapter_list,  *serie_head, user_head);
+      driveSeasons(&aux, &*review_seasons_list, &*review_chapter_list,  *serie_head, user_head);
 
     }
     else{
