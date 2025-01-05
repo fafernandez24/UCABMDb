@@ -1,3 +1,5 @@
+// @author Freddy Fernández
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -127,29 +129,28 @@ void addSeason(Season **season_head, string season_name, int season_premiere, in
 
 void deleteSeason(Season **season_head, string season_name){
 
-    if (*season_head){
+  if (*season_head){
 
-        Season *aux = *season_head, *aux2 = NULL;
+    Season *aux = *season_head;
 
-        while ((aux->season_name == season_name) && (aux != NULL)){
+    if (aux -> season_name != season_name){
+      Season *aux2 = NULL;
 
-            aux2 = aux;
-            aux = aux->next_season;
-
-        }
-
-        if (aux->season_name == season_name){
-            aux2->next_season = aux->next_season;
-            delete(aux);
-        }
-        else{
-            cout << "ERROR. No se encontro la temporada a eliminar!\n";
-        }
-
+      while (aux -> season_name != season_name){
+        aux2 = aux;
+        aux = aux -> next_season;
+      }
+      aux2 -> next_season = aux -> next_season;
+      delete(aux);
     }
     else{
-        cout << "ERROR. Lista de temporadas vacia!\n";
+      *season_head = aux -> next_season;
+      delete(aux);
     }
+  }
+  else{
+    cout << "ERROR. Lista de temporadas vacia\n";
+  }
 }
 
 void readSeasonsFile(Serie *serie_head){
