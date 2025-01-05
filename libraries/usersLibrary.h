@@ -1,387 +1,376 @@
 // @author Freddy Fernández
 
 #include <iostream>
-#include <fstream>
 #include <string>
-#include "calificationSerieLibrary.h"
+#include <fstream>
+#include "structsLibrary.h"
 
 using namespace std;
+using  sizeType = std::string::size_type;
 
-SerieReview *getSerieReviewNode(SerieReview *review_head, string serie_name, string user_email){
+/////////////////////////////////////////////////////////////////////////////////////////////
 
-    if (review_head){
-        SerieReview *aux = review_head;
-        while (aux){
-            if (aux -> serie_name == serie_name && aux -> user -> email == user_email)
-                return aux;
-            aux = aux -> next_review;
-        }
+/* FUNCIONES DE VALIDACION DE TIPO BOOLEANO*/
+
+/*
+  @brief Valida la edad ingresada por el usuario.
+
+  @param word Dato de tipo cadena.
+
+  @return bool Validacion de la edad.
+
+*/
+bool checkIntDataYearsOld(string word){
+
+    if (word.empty()) return false;
+
+    for (sizeType n = 0; n < word.length(); ++n){
+        if (word[n] < '0' || word[n] > '9') return false;
     }
-    return NULL;
 
+    if (stoi(word) >= 0 && stoi(word) <= 150) return true;
+
+    return false;
 }
 
-bool findSerieReviewBool(SerieReview *review_head, string serie_name , string user_email){
-    if (review_head){
-        SerieReview *aux = review_head;
-        while (aux){
-            if ((aux -> serie_name == serie_name) && (aux -> user -> email == user_email)) return true;
-            aux = aux -> next_review;
-        }
+/* ESTA FUNCION VALIDA EL CORREO DEL USUARIO */
+
+/*
+  @brief Valida el correo ingresado por el usuario.
+
+  @param email Dato de tipo cadena.
+
+  @return bool Validacion del email.
+
+*/
+bool checkUserEmail(string email){
+
+    if (email.empty()) return false;
+
+    for (sizeType n = 0; n < email.length(); ++n){
+        if (email[n] == '@') return true;
     }
+
     return false;
 }
 
 /*
-    Funcion que retorna la cantidad de reseñas que tenga una serie.
+  @brief Valida del ID ingresado por el usuario.
 
-    @param *review_head Es un puntero de la estructura SerieReview que señala a la cabeza de la lista de reseñas designadas a series.
-    @param serie_name Es un dato de tipo cadena que maneja como contenido el nombre de la serie a la que se hizo reseña.
+  @param word Dato de tipo cadena.
 
-    @return La funcion retorna la variable count que segun tal condicion puede retornar 0 o un numero mayor.
+  @return bool Validacion del ID.
+
 */
-int countNumSerieReviewInSerie(SerieReview *review_head, string serie_name){
-    int count = 0;
-    if (review_head){
-        SerieReview *aux = review_head;
-        while (aux){
-            if (aux->serie_name == serie_name) ++count;
-            aux = aux -> next_review;
-        }
+bool checkIntUserId(string word){
+
+    if (word.empty()) return false;
+
+    for (sizeType n = 0; n < word.length(); ++n){
+        if (word[n] < '0' || word[n] > '9') return false;
     }
-    return count;
+
+    if (stoi(word) >= 0 && stoi(word) <= 9999999) return true;
+
+    return false;
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+/* PROCEDIMIENTOS & FUNCIONES PARA LOS USUARIOS */
 
 /*
-    Funcion que retorna la cantidad de reseñas que tenga una serie.
 
-    @param *review_head Es un puntero de la estructura SerieReview que señala a la cabeza de la lista de reseñas designadas a series.
-    @param user_email Es un dato de tipo cadena que maneja como contenido el email del usuario que hizo la reseña.
+  @brief Reserva en la memoria un espacio para una variable de tipo Users.
 
-    @return La funcion retorna una variable de tipo entero llamada count que segun tal condicion puede retornar 0 o un numero mayor.
+  @param email Dato de tipo cadena.
+  @param old Dato de tipo entero.
+  @param country Dato de tipo cadena.
+  @param id Dato de tipo entero.
+
+  @return Users Puntero de tipo Users.
+
 */
-int countNumSerieReviewInUser(SerieReview *review_head, string user_email){
-    int count = 0;
-    if (review_head){
-        SerieReview *aux = review_head;
-        while (aux){
-            if (aux->user_email == user_email) ++count;
-            aux = aux -> next_review;
-        }
-    }
-    return count;
+Users *createUser(string email, int old, string country, int id){
+
+  Users *new_user = new Users;
+
+  new_user -> email = email;
+  new_user -> years_old = old;
+  new_user -> country = country;
+  new_user -> id = id;
+
+  new_user -> next_user = NULL;
+
+  return new_user;
 }
 
-/* Funcion para obtener una reseña */
-string getSerieReview(){
+Users *getUsersNode(Users *users_head, string email){
+  if (users_head){
+    Users *aux = users_head;
+    while (aux){
+      if (aux -> email == email) return aux;
+      aux = aux -> next_user;
+    }
+  }
+  return users_head;
+}
 
-  string review;
-  cin.ignore();
-  cout << "\tReview: ";
-  getline(cin, review);
-  return review;
+/* FUNCIONES PARA OBTENER LOS DATOS DE LAS PELICULAS */
+
+/* Funcion para obtener el nombre de la pelicula */
+string getUsersEmail(){
+  string email;
+  bool check_email = false;
+
+  while(check_email == false){
+    cin.ignore();
+    cout << "\tEmail: ";
+    getline(cin, email);
+
+    check_email = checkUserEmail(email);
+    if (check_email == false){
+      cout << "ERROR. Ingresaste un correo invalido!\n";
+      cout << "AVISO: Recuerda incluir el @!\n";
+    }
+  }
+
+  return email;
 } 
 
-SerieReview *createSerieReview(string review, int id, Serie *serie, Users *user){
+/* Funcion para obtener el año de estreno de la pelicula */
+int getUsersYearsOld(){
+  string years_old;
+  bool check_num = false;
 
-    SerieReview *new_review = new SerieReview;
+  while (check_num == false){
 
-    new_review -> serie_name = serie->serie_name;
-    new_review -> user_email = user -> email;
-    new_review -> review = review;
-    new_review -> id = id;
-
-    new_review -> serie = serie;
-    new_review -> user = user;
-
-    new_review -> next_review = NULL;
-
-    return new_review;
-}
-
-void addSerieReview(SerieReview **review_head, string review, int id, Serie *serie, Users *user){
-    SerieReview *new_review =  createSerieReview(review, id, serie, user);
-    if (review_head){
-        new_review -> next_review = *review_head;
-        *review_head = new_review;
+    cout << "\tEdad: ";
+    cin >> years_old;
+    
+    check_num = checkIntDataYearsOld(years_old);
+    if (check_num == false){
+      cout << "ERROR. Ingresaste un valor invalido!\n";
+      cout << "AVISO: Igresar un entero entre 0 y 150!\n";
     }
-    else *review_head = new_review;
+  }
+  return stoi(years_old);
 }
 
-void deleteSerieReview(SerieReview **review_head, string serie_name, string user_email){
+/* Funcion para obtener el genero de la pelicula */
+string getUsersCountry(){
+  string country;
+  cin.ignore();
+  cout << "\tPais: ";
+  getline(cin, country);
+  return country;
+}
 
-    if (*review_head){
+int getUserId(){
 
-        SerieReview *aux = *review_head;
+  string user_id;
+  bool check_num = false;
+  
+  while (check_num == false){
+    cout << "\tID: ";
+    cin >> user_id;
 
-        if (aux->serie_name == serie_name && aux->user_email == user_email){
-            *review_head = aux -> next_review;
-            delete(aux);
-        }
-        else{
+    check_num = checkIntUserId(user_id);
+    if (check_num == false){
+      cout << "ERROR. Ingresaste un valor invalido!\n";
+      cout << "AVISO: Igresar un entero entre 10000 y 99999!\n";
+    }
+  }
+  return stoi(user_id);
+}
 
-            SerieReview *aux2 = NULL;
+/////////////////////////////////////////////////////////////////////////////////////////////
 
-            while (aux){
-                aux2 = aux;
-                aux = aux->next_review;
-                if (aux->serie_name == serie_name && aux->user_email == user_email) break;
-            }
+/* Procedimiento para mostras los usuarios en pantalla */
 
-            if (aux->serie_name == serie_name && aux->user_email == user_email){
-                aux2 -> next_review = aux -> next_review;
-                delete(aux);
-            }
-            else{
-                cout << "ERROR. No se pudo encontrar la review.\n";
-            }
+void printUsersList(Users *users_head){
 
-        }
+  Users *aux = users_head;
+  int users_num = 1;
+
+  cout << "========================================\n";
+  cout << "                USUARIOS\n";
+  cout << "========================================\n";
+
+  if (users_head){
+    while (aux){
+
+      cout << "              User #" << users_num << "              \n";
+      cout << "========================================\n";
+      cout << "\tUser email: " << aux-> email << endl;
+      cout << "\tUser age: " << aux->years_old << " years" << endl;
+      cout << "\tUser country: " << aux->country << endl;
+      cout << "\tUser ID: " << aux->id << endl;
+      cout << "========================================\n";
+
+      aux = aux->next_user;
+      ++users_num;
+    }
+  }
+  else{
+
+    cout << "========================================\n";
+    cout << "                User #0\n";
+    cout << "========================================\n";
+    cout << "\tAun no hay usuarios...\n";
+    cout << "========================================\n";
+    cout << endl;
+  }
+}
+
+/* Procedimiento para agregar peliculas */
+
+void addUsers(Users **users_head, string email, int years_old, string country, int id){
+
+  Users *new_user = createUser(email, years_old, country, id);
+
+  if (!*users_head){
+    *users_head = new_user;
+  }
+  else{
+
+    Users *aux = *users_head;
+
+    while (aux->next_user != NULL){
+      aux = aux->next_user;
+    }
+
+    aux->next_user = new_user;
+
+  }
+}
+
+/* Procedimiento para eliminar usuarios */
+
+void deleteUsers(Users **users_head, string email){
+
+  if (*users_head){
+
+    Users *aux = *users_head;
+
+    if (aux->email == email){
+      *users_head = aux->next_user;
+      delete(aux);
     }
     else{
-        cout << "ERROR. Lista de reviews vacia!\n";
+      Users *aux2 = NULL;
+
+      while (aux -> email != email){
+        aux2 = aux;
+        aux = aux -> next_user;
+      }
+      aux2 -> next_user = aux -> next_user;
+      delete(aux);
     }
+  }
+  else{
+    cout << "ERROR. Lista de usuarios vacia.\n";
+  }
 }
 
-void deleteSerieReviewBySerie(SerieReview **review_head, string serie_name){
+/* FUNCION QUE RETORNA UN TIPO DE DATO BOOLEANO QUE DETERMINA SI UN USUARIO SE ENCUENTRA O NO EN LA LISTA DE USUARIOS */
 
-    if (*review_head){
-
-        SerieReview *aux = *review_head;
-
-        if (aux->serie_name == serie_name){
-            *review_head = aux -> next_review;
-            delete(aux);
-        }
-        else{
-
-            SerieReview *aux2 = NULL;
-
-            while (aux){
-                aux2 = aux;
-                aux = aux -> next_review;
-                if (aux->serie_name == serie_name) break;
-            }
-
-            if (aux->serie_name == serie_name){
-                aux2 -> next_review = aux -> next_review;
-                delete(aux);
-            }
-            else{
-                cout << "ERROR. No se pudo encontrar la review.\n";
-            }            
-        }
+bool findUsers(Users *users_head, string email){
+  if (users_head){
+    Users *aux = users_head;
+    while (aux){
+      if (aux -> email == email) return true;
+      aux = aux -> next_user;
     }
-    else cout << "ERROR. Lista de reviews vacia!\n";
+  }
+  return false;
 }
 
-void deleteSerieReviewByUser(SerieReview **review_head, string user_email){
+/////////////////////////////////////////////////////////////////////////////////////////////
 
-    SerieReview *aux = *review_head;
+/* PROCEDIMIENTOS PARA LA LECTURA Y ESCRITURA  DEL ARCHIVO DESTINADO PARA USUARIOS */
 
-    if (aux){
+/* PROCEDIMIENTO PARA LA LECTURA DE ARCHIVOS PARA USUARIOS */
 
-        if (aux->user_email == user_email){
-            *review_head = aux -> next_review;
-            delete(aux);
-        }
-        else{
-
-            SerieReview *aux2 = NULL;
-
-            while (aux->user_email != user_email){
-                aux2 = aux;
-                aux = aux -> next_review;
-            }
-
-            aux2 -> next_review = aux -> next_review;
-            delete(aux);
-        
-        }
-    }
-    else{
-        cout << "ERROR. Lista de reviews vacia!\n";
-    }
-}
-
-void editSerieReview(SerieReview *review_head, string review, string serie_name, string user_email){
-
-    if (findSerieReviewBool(review_head, serie_name, user_email) == true){
-
-        SerieReview *new_review = getSerieReviewNode(review_head, serie_name, user_email);
-        new_review -> review = review;
-        cout << "AVISO: Review EDITADA con exito!\n";
-    }
-    else 
-        cout << "ERROR. La review ingresada no ha sido encontrada!\n";
-}
-
-int reviewSerieMenu(){
-
-    string menu = " ";
-
-    do{
-        cout << "========================================\n";
-        cout << "           SERIE REVIEWS MENU           \n";
-        cout << "========================================\n";
-        cout << "(1) Mostrar reviews \n";
-        cout << "(2) Agregar review\n";
-        cout << "(3) Borrar review\n";
-        cout << "(0) Volver a series\n";
-        cout << "========================================\n";
-        cout << " Opcion: ";
-        cin >> menu;
-
-        if (menu < "0" || menu > "3"){
-            cout << "ERROR. Ingresaste " << menu << endl;
-            cout << "Ingresa una opcion valida.\n";
-        }
-
-    } while (menu < "0" || menu > "3");
-
-    return stoi(menu);
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-void printSerieReviewsInSerie(SerieReview *review_head, string serie_name){
-
-    cout << "========================================\n";
-    cout << "              SERIE REVIEWS             \n";
-    cout << "========================================\n";
-
-    if (countNumSerieReviewInSerie(review_head, serie_name) > 0){
-
-        SerieReview *aux = review_head;
-        
-        while (aux){
-            if (aux->serie_name == serie_name){
-                cout << "Usuario: " << aux -> user -> email << endl;
-                cout << "Review: " << aux -> review  << endl;
-                cout << "========================================\n";
-            }
-            aux = aux->next_review;
-        }
-    }
-    else cout << "AVISO: Aun no hay reviews en la serie\n";
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-void printSerieReviewsInUser(SerieReview *review_head, string user_email){
-
-    cout << "========================================\n";
-    cout << "              USER REVIEWS              \n";
-    cout << "========================================\n";
-
-    if (countNumSerieReviewInUser(review_head, user_email) > 0){
-
-        SerieReview *aux = review_head;
-        
-        while (aux){
-            if (aux->user_email == user_email){
-                cout << "Serie: " << aux -> serie_name << endl;
-                cout << "Review: " << aux -> review  << endl;
-                cout << "========================================\n";
-            }
-            aux = aux->next_review;
-        }
-    }
-    else cout << "AVISO: Aun no hay reviews del usuario\n";
-}
-
-void showSerieReview(SerieReview *review_head){
-
-    cout << "========================================\n";
-    cout << "             SERIE REVIEWS             \n";
-    cout << "========================================\n";
-
-    if (!review_head)
-        cout << "ERROR. Lista de reviews vacia!\n";
-    else{
-
-        SerieReview *aux = review_head;
-
-        while (aux){
-
-            cout << "Serie: " << aux->serie_name << endl;
-            cout << "Usuario: " << aux -> user -> email << endl;
-            cout << "Review: " << aux->review << endl;
-            cout << "ID: " << aux->id << endl;
-            cout << "========================================\n";
-
-            aux = aux -> next_review;
-        }
-    }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-/* PROCEDIMIENTOS PARA LA LECTURA Y ESCRITURA  DEL ARCHIVO DESTINADO PARA REVIEWS */
-
-/* PROCEDIMIENTO PARA LA LECTURA DE ARCHIVOS PARA REVIEWS */
-
-void readSerieReviewFile(SerieReview **review_head, Serie *serie_head, Users *user_head){
+void readUsersFile(Users **users_head){
 
   ifstream file;
-  string text, serie_name, user_email, review;
-  int data_line = 0, id;
-  SerieReview *aux = *review_head;
-  Serie *serie = NULL;
-  Users *user = NULL;
+  string text, email, country;
+  int data_line = 0, years_old, id;
+  Users *aux = *users_head;
 
-  file.open("reviewseriefile.txt", ios::in);
+
+  file.open("usersfile.txt", ios::in);
 
   if (file.fail()){
-      cout << "ERROR. No se pudo abrir el archivo de REVIEWS EN serieS!\n";
+      cout << "ERROR. No se pudo abrir el archivo de USUARIOS!\n";
+      file.close();
       exit(1);
   }
 
   getline(file, text);
 
-    if (text == "SERIES REVIEWS"){
+  if (text == "USERS"){
 
-        while(!file.eof()){
+      while(!file.eof()){
 
-            getline(file,text);
+      getline(file,text);
 
-            if (data_line == 1) serie = getSerieNodeByName(serie_head, text);
+      if (data_line == 3) country = text;
 
-            if (data_line == 2) user = getUsersNode(user_head, text);
+      if (data_line == 2){
 
-            if (data_line == 3) review = text;
-
-            if (data_line == 4){
-                if (checkIntSerieCalificationId(text) == true){
-                    id = stoi(text);
-                    addSerieReview(&aux, review, id, serie, user);
-                }
-            }
-
-            ++data_line;
-
-            if (data_line == 5) data_line = 0;
-
+        if (checkIntDataYearsOld(text) == true) years_old = stoi(text);
+        else{
+          cout << "\nERROR. Dato invalidos en el archivo!\n";
+          cout << "AVISO: No se cargaron los datos del archivo de usuarios!\n\n";
+          file.close();
+          break;
         }
+      }
 
-        *review_head = aux;
+      if (data_line == 1){
 
+        if (checkUserEmail(text) == true) email = text;
+        else{
+          cout << "\nERROR. Dato invalidos en el archivo!\n";
+          cout << "AVISO: No se cargaron los datos del archivo de usuarios!\n\n";
+          file.close();
+          break;
+        }
+      } 
+
+      if (data_line == 4){
+
+        if (checkIntUserId(text) == true){
+          id = stoi(text);
+          addUsers(&aux, email, years_old, country, id);
+        }
+      }
+
+      ++data_line;
+
+      if (data_line == 5) data_line = 0;
     }
-    else{
-        cout << "\nERROR. Dato invalidos en el archivo!\n";
-        cout << "AVISO: No se cargaron los datos del archivo de reviews en series!\n\n";
-    }
+    *users_head = aux;
 
-    file.close();
+  }
+  else{
+    cout << "\nERROR. Dato invalidos en el archivo!\n";
+    cout << "AVISO: No se cargaron los datos del archivo de usuarios!\n\n";
+  }
+
+
+  file.close();
 }
 
-/* PROCEDIMIENTO PARA LA ESCRITURA DE ARCHIVOS EN REVIEWS */
+/* PROCEDIMIENTO PARA LA ESCRITURA DE ARCHIVOS EN USUARIOS */
 
-void addSerieReviewToFile(string serie_name, string user_email, string review, int id){
+void addUserToFile(string email, int years_old, string country, int id){
 
   ofstream file;
 
-  file.open("reviewseriefile.txt", ios::app);
+  file.open("usersfile.txt", ios::app);
 
   if (file.fail()){
       cout << "ERROR. No se pudo abrir el archivo";
@@ -389,111 +378,109 @@ void addSerieReviewToFile(string serie_name, string user_email, string review, i
   }
 
   file << endl;
-  file << endl << serie_name;
-  file << endl << user_email;
-  file << endl << review;
+  file << endl << email;
+  file << endl << years_old;
+  file << endl << country;
   file << endl << id;
 
   file.close();
 }
 
-void writeSerieReviewFile(SerieReview *reviews_head){
+void writeUsersFile(Users *users_head){
 
-    if (reviews_head){
+  if (users_head){
 
-        ofstream file;
-        file.open("reviewseriefile.txt", ios::out);
+    ofstream file;
+    file.open("usersfile.txt", ios::out);
 
-        if (file.fail()){
-        cout << "ERROR. No se pudo abrir el archivo\n";
-        exit(1);
-        }
-        else{
-
-            SerieReview *aux = reviews_head;
-
-            file << "SERIES REVIEWS\n\n";
-
-            while(aux){
-
-                file << aux -> serie_name << endl;
-                file << aux -> user_email << endl;
-                file << aux -> review << endl;
-
-                if (aux -> next_review == NULL) file << aux -> id;
-                else file << aux -> id << endl << endl;
-
-                aux = aux -> next_review;
-            }
-        }
+    if (file.fail()){
+      cout << "ERROR. No se pudo abrir el archivo\n";
+      exit(1);
     }
     else{
 
-        ofstream file;
-        file.open("reviewsfile.txt", ios::out);
+      Users *aux = users_head;
 
-        if (file.fail()){
-        cout << "ERROR. No se pudo abrir el archivo\n";
-        exit(1);
-        }
-        else file << "REVIEWS\n\n";
-    
+      file << "USERS\n\n";
+
+      while(aux){
+
+
+        file << aux -> email << endl;
+        file << aux -> years_old << endl;
+        file << aux -> country << endl;
+
+        if (aux -> next_user == NULL) file << aux -> id;
+        else file << aux -> id << endl << endl;
+
+        aux = aux -> next_user;
+      }
     }
+  }
+  else cout << "ERROR. Lista de usuarios vacia!";
 }
 
-void addSerieReviewMenu(SerieReview **review_head, Serie *serie_head, Users *user_head){
+/////////////////////////////////////////////////////////////////////////////////////////////
 
-    cout << "========================================\n";
-    cout << "        ADD OR EDIT SERIE REVIEW        \n";
-    cout << "========================================\n";
-    string serie_name = getSerieName();
-    string user_email = getUsersEmail();
-    string review = getSerieReview();
-    int id = getSerieCalificationId();
-    cout << "========================================\n";
+/* FUNCION DE MENU PARA USUARIOS QUE RETORNA UN NUMERO */
 
-    bool serie_exist = findSerieByName(serie_head, serie_name);
-    bool user_exist = findUsers(user_head, user_email);
+int usersMenu(){
 
-    if ( serie_exist == true && user_exist == true){
+  string menu;
 
-        bool review_exist = findSerieReviewBool(*review_head, serie_name, user_email);
+  cout << "========================================\n";
+  cout << "               USERS MENU               \n";
+  cout << "========================================\n";
+  cout << "(1) Ver usuarios\n";
+  cout << "(2) Agregar usuario\n";
+  cout << "(3) Eliminar usuario\n";
+  cout << "(4) Buscar usuario\n";
+  cout << "(0) Regresar al menu principal\n";
+  cout << "========================================\n";
+  cout << "Ingresar opcion: ";
+  cin >> menu;
+  cout << "========================================\n";
 
-        if ( review_exist == false){
+  if (menu >= "0"  && menu <= "4") return stoi(menu);
 
-            Serie *serie = getSerieNodeByName(serie_head, serie_name);
-            Users *user = getUsersNode(user_head, user_email);
-            addSerieReview(&*review_head, review, id, serie, user);
-
-            cout << "AVISO: review AGREGADA con exito\n";
-
-        }
-        else editSerieReview(*review_head, review, serie_name, user_email);
-        
-        writeSerieReviewFile(*review_head);
-
-    }
-    else 
-        cout << "ERROR. La serie o el usuario ingresado no han sido encontrados!\n";
+  cout << "ERROR. Ingresaste " << menu << " que es un valor invalido.\n";
+  cout << "Por favor ingresar una opcion correcta.\n";
+  return -1;
 }
 
-void deleteSerieReviewMenu(SerieReview **review_head){
+void addUsersMenu(Users **users_head){
 
-    cout << "========================================\n";
-    cout << "           DELETE SERIE REVIEW          \n";
-    cout << "========================================\n";
-    string serie_name = getSerieName();
-    string user_email = getUsersEmail();
-    cout << "\n";
-    cout << "========================================\n";
+  cout << "========================================\n";
+  cout << "                ADD USER                \n";
+  cout << "========================================\n";
+  string email = getUsersEmail();
+  int years_old = getUsersYearsOld();
+  string country = getUsersCountry();
+  int id = getUserId();
+  cout << "========================================\n";
 
-    bool review_exist = findSerieReviewBool(*review_head, serie_name, user_email);
+  bool users_exist = findUsers(*users_head, email);
 
-    if (review_exist == true){
-        deleteSerieReview(&*review_head, serie_name, user_email);
-        writeSerieReviewFile(*review_head);
-        cout << "AVISO: La review ha sido borrada con exito!\n";
-    }
-    else 
-        cout << "ERROR. La review ingresada no ha sido encontrada!\n";
+  if (users_exist == false){
+    addUsers(&*users_head, email, years_old, country, id);
+    addUserToFile(email, years_old, country, id);
+    cout << "Se agrego el usuario correctamente!\n";
+  }
+  else cout << "AVISO: El usuario ya existe!\n";
+
 }
+
+/* PROCEDIMIENTO DEL MENU PARA BUSCAR ALGUN USUARIO */
+
+string searchUserMenu(){
+
+  cout << "========================================\n";
+  cout << "              SEARCH USER               \n";
+  cout << "========================================\n";
+  string email = getUsersEmail();
+  cout << "========================================\n";
+
+  return email;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////
