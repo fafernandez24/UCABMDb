@@ -1,3 +1,5 @@
+// @author Freddy Fernández
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -525,25 +527,6 @@ void addChapterMenu(Chapter **chapter_head){
     cout << "AVISO: El capitulo se agrego correctamente!\n";
   }
   else cout << "AVISO: La serie ya se encuentra agregada!\n";
-}
-
-void deleteChapterMenu(Chapter **chapter_head){
-
-  cout << "========================================\n";
-  cout << "            DELETE CHAPTER              \n";
-  cout << "========================================\n";
-  string chapter_name = getChapterName();
-  cout << "========================================\n";
-
-  bool chapter_exist = findChapterByName(*chapter_head, chapter_name);
-  cout << "HOLA 1" << endl;
-
-  if (chapter_exist == true){
-    cout << "HOLA 2" << endl;
-    deleteChapter(&*chapter_head, chapter_name);
-    cout << "AVISO: El capitulo se elimino correctamente!\n";
-  }
-  else cout << "AVISO: No se encontro el capitulo indicado!\n";
 }
 
 /* PROCEDIMIENTO DEL MENU PARA BUSCAR LA SERIE */
