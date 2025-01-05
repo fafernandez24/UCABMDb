@@ -1,3 +1,5 @@
+// @author Freddy Fernández
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -155,22 +157,20 @@ void deleteSerie(Serie **serie_head, string serie_name){
 
     if (*serie_head){
 
-        Serie *aux = *serie_head, *aux2 = NULL;
+      Serie *aux = *serie_head, *aux2 = NULL;
 
-        while ((aux->serie_name == serie_name) && (aux != NULL)){
+      if (aux->serie_name == serie_name){
+        *serie_head = aux->next_serie;
+        delete(aux);
+      }
 
-            aux2 = aux;
-            aux = aux->next_serie;
+      while (aux->serie_name != serie_name){
+          aux2 = aux;
+          aux = aux->next_serie;
+      }
 
-        }
-
-        if (aux->serie_name == serie_name){
-            aux2->next_serie = aux->next_serie;
-            delete(aux);
-        }
-        else{
-            cout << "ERROR. No se encontro la serie a eliminar!\n";
-        }
+        aux2->next_serie = aux->next_serie;
+        delete(aux);
 
     }
     else{
