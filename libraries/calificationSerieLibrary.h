@@ -1,3 +1,5 @@
+// @author Freddy Fernández
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -185,15 +187,13 @@ void deleteSerieCali(SerieCalification **cali_head, string serie_name){
 
             SerieCalification *aux2;
 
-            while (aux->serie_name != serie_name || aux != NULL){
+            while (aux->serie_name != serie_name){
                 aux2 = aux;
                 aux = aux->next_calification;
             }
 
-            if (aux->serie_name == serie_name){
-                aux2->next_calification = aux->next_calification;
-                delete(aux);
-            }
+            aux2->next_calification = aux->next_calification;
+            delete(aux);
         }
     }
     else
