@@ -60,7 +60,7 @@ int countNumSerieReviewInSerie(SerieReview *review_head, string serie_name){
 
     @return La funcion retorna una variable de tipo entero llamada count que segun tal condicion puede retornar 0 o un numero mayor.
 */
-int countSerieReviewByUser(SerieReview *review_head, string user_email){
+int countNumSerieReviewInUser(SerieReview *review_head, string user_email){
     int count = 0;
     if (review_head){
         SerieReview *aux = review_head;
@@ -274,7 +274,7 @@ void printSerieReviewsInUser(SerieReview *review_head, string user_email){
     cout << "              USER REVIEWS              \n";
     cout << "========================================\n";
 
-    if (countSerieReviewByUser(review_head, user_email) > 0){
+    if (countNumSerieReviewInUser(review_head, user_email) > 0){
 
         SerieReview *aux = review_head;
         
@@ -497,3 +497,4 @@ void deleteSerieReviewMenu(SerieReview **review_head){
     else 
         cout << "ERROR. La review ingresada no ha sido encontrada!\n";
 }
+
