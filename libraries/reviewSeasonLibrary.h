@@ -214,7 +214,7 @@ void deleteSeasonRev(SeasonReview **review_head, string serie_name, string seaso
         cout << "AVISO: No se encontraron reviews en esta temporada!\n";
 }
 
-void deleteUserSeasonReview(SeasonReview **review_head, string email){
+void deleteSeasonRevByUser(SeasonReview **review_head, string email){
 
     if (*review_head){
         
