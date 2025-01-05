@@ -299,7 +299,7 @@ int main(){
             } 
             case 3: // ELIMINAR USUARIO
             {
-              deleteUsersMenu(&users_list, &calification_movies_list, &review_movies_list);
+              deleteUsersMenu(&users_list, &calification_movies_list, &review_movies_list, &calification_series_list, &review_series_list, &review_seasons_list, &review_chapter_list);
               break;
             }
             case 4:
