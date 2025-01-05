@@ -17,30 +17,6 @@ Devastating Wish
 245245
 
 GT
-Baby Saga
-Giru's Checkered Past
-1996
-22
-1
-345654
-
-GT
-Baby Saga
-Unexpected Power
-1996
-18
-3
-36463
-
-GT
-Baby Saga
-Pan's Gambit
-1996
-20
-2
-155385
-
-GT
 Super Android 17 Saga
 Curtain Call
 1997
@@ -984,86 +960,6 @@ Kafka Hibino
 12
 120011
 
-Mas alla del Jardin
-Temporada 1
-El viejo molino arinero
-2014
-12
-1
-140000
-
-Mas alla del Jardin
-Temporada 1
-Tiempos dif¡ciles en el Huskin'Bee
-2014
-11
-2
-140001
-
-Mas alla del Jardin
-Temporada 1
-Las locuras de la ciudad escolar
-2014
-11
-3
-140002
-
-Mas alla del Jardin
-Temporada 1
-Canciones de la linterna oscura
-2014
-11
-4
-140003
-
-Mas alla del Jardin
-Temporada 1
-Amor loco
-2014
-11
-5
-140004
-
-Mas alla del Jardin
-Temporada 1
-Cancion de cuna en Frogland
-2014
-11
-6
-140005
-
-Mas alla del Jardin
-Temporada 1
-El sonido de la campana
-2014
-11
-7
-140006
-
-Mas alla del Jardin
-Temporada 1
-Chicas en el bosque
-2014
-11
-8
-140007
-
-Mas alla del Jardin
-Temporada 1
-Hacia lo desconocido
-2014
-11
-9
-140008
-
-Mas alla del Jardin
-Temporada 1
-Lo desconocido
-2014
-11
-10
-140009
-
 Sr. y Sra. Smith
 Temporada 1
 Primera cita
@@ -1218,7 +1114,7 @@ No cuentes cuentos
 
 One Piece
 Temporada 1
-Los piratas vienen
+En la busqueda del One Piece
 2023
 62
 4
@@ -1234,7 +1130,7 @@ Temporada 1
 
 One Piece
 Temporada 1
-El chef y el chico de los quehaceres domesticos
+El chef y el chico de los que haceres domesticos
 2023
 54
 6

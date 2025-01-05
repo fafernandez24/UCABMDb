@@ -37,7 +37,7 @@ Supervivencia, Accion, Aventura, Drama
 
 Secret Level
 2024
-Accion, Aventura, Animacion, Fantasia
+Acciï¿½n, Aventura, Animacion, Fantasia
 200007
 
 Dan da dan: Primer encuentro
@@ -52,7 +52,7 @@ Korean Drama, Thriller, Misterio, Accion
 
 Loki
 2021
-Superheroes, Aventura, Accion, Fantasia
+Superhï¿½roes, Aventura, Accion, Fantasia
 200010
 
 Breaking Bad
@@ -67,12 +67,12 @@ Crimen, Drama, Gangster
 
 The boys
 2019
-Accionn, Comedia, Crimen, Superheroes, Drama
+Acciï¿½n, Comedia, Crimen, Superheroes, Drama
 200013
 
 Stranger Things
 2016
-Fantasia, Horror, Drama
+Fantasï¿½a, Horror, Drama
 200014
 
 The Last of Us
@@ -82,12 +82,12 @@ Drama
 
 Hawkeye
 2021
-Accionn, Superheroes
+Acciï¿½n, Superheroes
 800000
 
 Avatar: La Leyenda de Aang
 2024
-Accion, Aventura, Drama
+Acciï¿½n, Aventura, Drama
 200016
 
 Kaiju No.8
@@ -95,24 +95,19 @@ Kaiju No.8
 Anime
 200017
 
-M s all  del Jard¡n
-2014
-Aventura, Animacion, Terror, Fantas¡a
-200018
-
 Sr. y Sra. Smith
 2024
-Accion
+Acci¢n
 150000
 
 Peacemaker
 2022
-Accion
+Acci¢n
 200019
 
 One Piece
 2023
-Accion, Aventura
+Acci¢n, Aventura
 200020
 
 Cyberpunk: Edgerunners
