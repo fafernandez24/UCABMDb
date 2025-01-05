@@ -241,7 +241,7 @@ void deleteChapterRevBySerie(ChapterReview **review_head, string serie_name){
 
 }
 
-void deleteUserChapterRev(ChapterReview **review_head, string email){
+void deleteChapterRevByUser(ChapterReview **review_head, string email){
 
     if (*review_head){
         
