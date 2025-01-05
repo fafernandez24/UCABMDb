@@ -1,3 +1,5 @@
+// @author Freddy Fernández
+
 #include <iostream>
 #include "getCinLibrary.h"
 
@@ -5,8 +7,7 @@ using namespace std;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-// STRUCT
-
+// STRUCTS
 
 // @brief Define los elementos de la estructura usuario.
 struct Users{
@@ -134,32 +135,32 @@ struct SerieReview{
 
 };
 
-// @brief Define los elementos de la estructura calificacion en una temporada.
-struct SeasonCalification{
+// @brief Define los elementos de la estructura reseña en una temporada.
+struct SeasonReview{
 
     string serie_name;
     string season_name;
     string user_email;
-    float calification;
+    string review;
     int id;
 
     Season *season;
     Users *user;
-    SeasonCalification *next_calification;
+    SeasonReview *next_review;
 
 };
 
-// @brief Define los elementos de la estructura calificacion en un capitulo.
-struct ChapterCalification{
+// @brief Define los elementos de la estructura reseña en un capitulo.
+struct ChapterReview{
 
     string serie_name;
     string chapter_name;
     string user_email;
-    float calification;
+    string review;
     int id;
 
     Chapter *chapter;
     Users *user;
-    ChapterCalification *next_calification;
+    ChapterReview *next_review;
 
 };
