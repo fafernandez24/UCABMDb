@@ -497,4 +497,3 @@ void deleteSerieReviewMenu(SerieReview **review_head){
     else 
         cout << "ERROR. La review ingresada no ha sido encontrada!\n";
 }
-

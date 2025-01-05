@@ -39,7 +39,7 @@ bool checkIntDataYearsOld(string word){
   @brief Valida el correo ingresado por el usuario.
 
   @param email Dato de tipo cadena.
-
+  
   @return bool Validacion del email.
 
 */
