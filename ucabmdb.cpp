@@ -160,7 +160,7 @@ int main(){
         main_option = -1;
         break;
       }
-      case 2:  // DESPLEGAR MENU DE SERIES
+      case 2: // DESPLEGAR MENU DE SERIES
       {
         int serie_option = 0;
 
@@ -280,7 +280,7 @@ int main(){
 
         break;
       }
-      case 3:
+      case 3: // DESPLEGAR MENU DE USUARIOS
       {
         
         int users_option = -1;
@@ -319,6 +319,48 @@ int main(){
           }
         }
         main_option = -1;
+        break;
+      }
+      case 4:
+      {
+        int featured_option = 0;
+
+        do{
+
+          featured_option = outstandingMenu();
+
+          switch(featured_option){
+
+            case 1:{
+              driveOustandingMovie(calification_movies_list, review_movies_list);
+              break;
+            }
+            case 2:{
+              driveOustandingSerie(calification_series_list, review_series_list);
+              break;
+            }
+            case 3:{
+              driveOustandingSeason(review_seasons_list);
+              break;
+            }
+            case 4:{
+              driveOustandingChapter(review_chapter_list);
+              break;
+            }
+            default:
+            {
+              if (featured_option == 0){
+                cout << "Regresando al menu principal...\n";
+                system("cls");
+              }
+              else cout << "VUELVE A INTENTAR\n";  
+
+              break;
+            }
+          }
+
+        }while (featured_option != 0);
+
         break;
       }
       default:
