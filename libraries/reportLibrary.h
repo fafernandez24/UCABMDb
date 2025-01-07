@@ -211,15 +211,18 @@ void printMovieGeneralTopCali(TopCali *top_head){
         int num = 1;
 
         cout << "========================================\n";
-        cout << "      TOP BESTS MOVIES IN GENERAL       \n";
+        cout << "    TOP MEJORES PELICULAS EN GENERAL    \n";
         cout << "========================================\n";
 
         while (aux){
+            
 
             cout << num << ". " << aux->name << " --- Promedio: " << aux->average << endl; 
             cout << "========================================\n";
 
-            ++num;
+            if (num != 5) ++num;
+            else break;
+
             aux = aux->next_top;
 
         }
@@ -239,7 +242,7 @@ void printMovieCountryTopCali(TopCali *top_head){
         int num = 1;
 
         cout << "========================================\n";
-        cout << "      TOP BESTS MOVIES BY COUNTRY       \n";
+        cout << "     TOP MEJORES PELICULAS POR PAIS     \n";
         cout << "========================================\n";
 
         while (aux){
@@ -247,7 +250,9 @@ void printMovieCountryTopCali(TopCali *top_head){
             cout << num << ". " << aux->name << " --- Promedio: " << aux->average << endl; 
             cout << "========================================\n";
 
-            ++num;
+            if (num != 5) ++num;
+            else break;
+
             aux = aux->next_top;
 
         }
@@ -267,7 +272,7 @@ void printMovieTypeTopCali(TopCali *top_head){
         int num = 1;
 
         cout << "========================================\n";
-        cout << "        TOP BESTS MOVIES BY TYPE        \n";
+        cout << "    TOP MEJORES PELICULAS POR GENERO    \n";
         cout << "========================================\n";
 
         while (aux){
@@ -275,7 +280,9 @@ void printMovieTypeTopCali(TopCali *top_head){
             cout << num << ". " << aux->name << " --- Promedio: " << aux->average << endl; 
             cout << "========================================\n";
 
-            ++num;
+            if (num != 5) ++num;
+            else break;
+            
             aux = aux->next_top;
 
         }
@@ -303,7 +310,9 @@ void printMovieGeneralTopRev(TopRev *top_head){
             cout << num << ". " << aux->name << " --- Num. de reviews: " << aux->num_rev << endl; 
             cout << "========================================\n";
 
-            ++num;
+            if (num != 5) ++num;
+            else break;
+
             aux = aux->next_top;
 
         }
@@ -323,7 +332,7 @@ void printMovieCountryTopRev(TopRev *top_head){
         int num = 1;
 
         cout << "========================================\n";
-        cout << "  PELICULAS CON MAS REVIEWS POR PAIS \n";
+        cout << "   PELICULAS CON MAS REVIEWS POR PAIS   \n";
         cout << "========================================\n";
 
         while (aux){
@@ -331,7 +340,9 @@ void printMovieCountryTopRev(TopRev *top_head){
             cout << num << ". " << aux->name << " --- Num. de reviews: " << aux->num_rev << endl; 
             cout << "========================================\n";
 
-            ++num;
+            if (num != 5) ++num;
+            else break;
+
             aux = aux->next_top;
 
         }
@@ -353,7 +364,7 @@ void printSerieGeneralTopCali(TopCali *top_head){
         int num = 1;
 
         cout << "========================================\n";
-        cout << "      TOP BESTS SERIES IN GENERAL       \n";
+        cout << "      TOP MEJORES SERIES EN GENERAL     \n";
         cout << "========================================\n";
 
         while (aux){
@@ -361,7 +372,9 @@ void printSerieGeneralTopCali(TopCali *top_head){
             cout << num << ". " << aux->name << " --- Promedio: " << aux->average << endl; 
             cout << "========================================\n";
 
-            ++num;
+            if (num != 5) ++num;
+            else break;
+
             aux = aux->next_top;
 
         }
@@ -381,7 +394,7 @@ void printSerieCountryTopCali(TopCali *top_head){
         int num = 1;
 
         cout << "========================================\n";
-        cout << "      TOP BESTS SERIES BY COUNTRY       \n";
+        cout << "      TOP MEJORES SERIES POR PAIS       \n";
         cout << "========================================\n";
 
         while (aux){
@@ -389,7 +402,9 @@ void printSerieCountryTopCali(TopCali *top_head){
             cout << num << ". " << aux->name << " --- Promedio: " << aux->average << endl; 
             cout << "========================================\n";
 
-            ++num;
+            if (num != 5) ++num;
+            else break;
+
             aux = aux->next_top;
 
         }
@@ -409,7 +424,7 @@ void printSerieTypeTopCali(TopCali *top_head){
         int num = 1;
 
         cout << "========================================\n";
-        cout << "        TOP BESTS SERIES BY TYPE        \n";
+        cout << "      TOP MEJORES SERIES POR GENERO     \n";
         cout << "========================================\n";
 
         while (aux){
@@ -417,7 +432,9 @@ void printSerieTypeTopCali(TopCali *top_head){
             cout << num << ". " << aux->name << " --- Promedio: " << aux->average << endl; 
             cout << "========================================\n";
 
-            ++num;
+            if (num != 5) ++num;
+            else break;
+
             aux = aux->next_top;
 
         }
@@ -445,7 +462,9 @@ void printSerieGeneralTopRev(TopRev *top_head){
             cout << num << ". " << aux->name << " --- Num. de reviews: " << aux->num_rev << endl; 
             cout << "========================================\n";
 
-            ++num;
+            if (num != 5) ++num;
+            else break;
+
             aux = aux->next_top;
 
         }
@@ -473,7 +492,9 @@ void printSerieCountryTopRev(TopRev *top_head){
             cout << num << ". " << aux->name << " --- Num. de reviews: " << aux->num_rev << endl; 
             cout << "========================================\n";
 
-            ++num;
+            if (num != 5) ++num;
+            else break;
+
             aux = aux->next_top;
 
         }
@@ -503,7 +524,9 @@ void printSeasonGeneralTopRev(TopRev *top_head){
             cout << num << ". " << aux->name << " --- Num. de reviews: " << aux->num_rev << endl; 
             cout << "========================================\n";
 
-            ++num;
+            if (num != 5) ++num;
+            else break;
+
             aux = aux->next_top;
 
         }
@@ -531,7 +554,9 @@ void printSeasonCountryTopRev(TopRev *top_head){
             cout << num << ". " << aux->name << " --- Num. de reviews: " << aux->num_rev << endl; 
             cout << "========================================\n";
 
-            ++num;
+            if (num != 5) ++num;
+            else break;
+
             aux = aux->next_top;
 
         }
@@ -561,7 +586,9 @@ void printChapterGeneralTopRev(TopRev *top_head){
             cout << num << ". " << aux->name << " --- Num. de reviews: " << aux->num_rev << endl; 
             cout << "========================================\n";
 
-            ++num;
+            if (num != 5) ++num;
+            else break;
+
             aux = aux->next_top;
 
         }
@@ -589,7 +616,9 @@ void printChapterCountryTopRev(TopRev *top_head){
             cout << num << ". " << aux->name << " --- Num. de reviews: " << aux->num_rev << endl; 
             cout << "========================================\n";
 
-            ++num;
+            if (num != 5) ++num;
+            else break;
+            
             aux = aux->next_top;
 
         }
@@ -603,7 +632,7 @@ void printChapterCountryTopRev(TopRev *top_head){
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-void addTopCali(TopCali **top_head, string name, int average){
+void addTopCali(TopCali **top_head, string name, float average){
 
     TopCali *new_top = createTopCali(name, average);
 
@@ -667,9 +696,9 @@ void addTopRev(TopRev **top_head, string name, int num_rev){
     }
 }
 
-float caliAverage(float total_sum, int num_cali){
+float caliAverage(float total_sum, float num_cali){
     float average = 0;
-    average = (total_sum)/(num_cali);
+    average = total_sum / num_cali;
     return average;
 }
 
@@ -686,7 +715,7 @@ void topMoviesByGeneral(MovieCalification *movie_cali_head){
 
         float total_sum = 0;
         float average = 0;
-        int count_cali;
+        int count_cali = 0;
 
         while (aux){
 
@@ -702,6 +731,7 @@ void topMoviesByGeneral(MovieCalification *movie_cali_head){
             }
 
             average = caliAverage(total_sum, count_cali);
+
             total_sum = 0;
             count_cali = 0;
 
@@ -731,7 +761,7 @@ void topMoviesByCountry(MovieCalification *movie_cali_head){
         string country = searchCountryMenu();
         float total_sum = 0;
         float average = 0;
-        int count_cali;
+        int count_cali = 0;
 
         while (aux){
 
@@ -776,7 +806,7 @@ void topMoviesByType(MovieCalification *movie_cali_head){
         string type = searchTypeMenu();
         float total_sum = 0;
         float average = 0;
-        int count_cali;
+        int count_cali = 0;
 
         while (aux){
 
@@ -822,7 +852,7 @@ void topSeriesByGeneral(SerieCalification *serie_cali_head){
 
         float total_sum = 0;
         float average = 0;
-        int count_cali;
+        int count_cali = 0;
 
         while (aux){
 
@@ -867,7 +897,7 @@ void topSeriesByCountry(SerieCalification *serie_cali_head){
         string country = searchCountryMenu();
         float total_sum = 0;
         float average = 0;
-        int count_cali;
+        int count_cali = 0;
 
         while (aux){
 
@@ -912,7 +942,7 @@ void topSeriesByType(SerieCalification *serie_cali_head){
         string country = searchTypeMenu();
         float total_sum = 0;
         float average = 0;
-        int count_cali;
+        int count_cali = 0;
 
         while (aux){
 
@@ -1269,17 +1299,17 @@ void driveOustandingMovie(MovieCalification *movie_cali_head, MovieReview *movie
         menu = outstandingMovieMenu();
         switch(menu){
             case 1:{
-                topMoviesByGeneral(movie_cali_head);
+                topMoviesByCountry(movie_cali_head);
                 break;
             }
             case 2:
             {
-                topMoviesByCountry(movie_cali_head);
+                topMoviesByType(movie_cali_head);
                 break;
             }
             case 3:
             {
-                topMoviesByType(movie_cali_head);
+                topMoviesByGeneral(movie_cali_head);  
                 break;
             }
             case 4:
@@ -1311,17 +1341,17 @@ void driveOustandingSerie(SerieCalification *serie_cali_head, SerieReview *serie
         menu = outstandingSerieMenu();
         switch(menu){
             case 1:{
-                topSeriesByGeneral(serie_cali_head);
+                topSeriesByCountry(serie_cali_head);
                 break;
             }
             case 2:
             {
-                topSeriesByCountry(serie_cali_head);
+                topSeriesByType(serie_cali_head);
                 break;
             }
             case 3:
             {
-                topSeriesByType(serie_cali_head);
+                topSeriesByGeneral(serie_cali_head);
                 break;
             }
             case 4:
