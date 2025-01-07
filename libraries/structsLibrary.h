@@ -164,3 +164,23 @@ struct ChapterReview{
     ChapterReview *next_review;
 
 };
+
+// @brief Define los elementos de la estructura top de las calificaciones para peliculas y series.
+struct TopCali{
+
+    string name;
+    float average;
+
+    TopCali *next_top;
+
+};
+
+// @brief Define los elementos de la estructura top de las reseñas para peliculas, series, temporadas y capitulos.
+struct TopRev{
+
+    string name;
+    int num_rev;
+
+    TopRev *next_top;
+
+};

@@ -3,7 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "reviewChapterLibrary.h"
+#include "reportLibrary.h"
 
 using namespace std;
 
@@ -306,14 +306,15 @@ int mainMenu(){
   cout << "========================================\n";
   cout << "(1) Peliculas\n";
   cout << "(2) Series\n";
-  cout << "(3) Usuario\n";
+  cout << "(3) Usuarios\n";
+  cout << "(4) Destacados\n";
   cout << "(0) Salir\n";
   cout << "========================================\n";
   cout << "Ingresar opcion: ";
   cin >> menu;
   cout << "========================================\n";
 
-  if (menu >= "0"  && menu <= "3") return stoi(menu);
+  if (menu >= "0"  && menu <= "4") return stoi(menu);
 
   cout << "ERROR. Ingresaste " << menu << " que es un valor invalido.\n";
   cout << "Por favor ingresar una opcion correcta.\n";
