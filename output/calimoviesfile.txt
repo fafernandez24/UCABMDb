@@ -1,1 +1,26 @@
 MOVIES CALIFICATIONS
+
+The Avengers
+ff@.com
+4.1
+747457
+
+Terminator
+ff@.com
+2.6
+545458
+
+Spider-Man
+ff@.com
+4.8
+745785
+
+42
+ff@.com
+3.2
+45745
+
+Ted
+ff@.com
+4.7
+75575
