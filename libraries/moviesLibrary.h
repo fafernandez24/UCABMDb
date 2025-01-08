@@ -432,7 +432,7 @@ int movieMenu(){
   cout << "(6) Reviews\n";
   cout << "(0) Regresar al menu principal\n";
   cout << "========================================" << endl;
-  cout << "Ingresar opcion: ";
+  cout << ">> ";
   cin >> menu;
   cout << "========================================\n";
   

@@ -358,6 +358,7 @@ int main(){
               break;
             }
           }
+          
 
         }while (featured_option != 0);
 
@@ -367,7 +368,20 @@ int main(){
       {
         if (main_option == 0){
           system("cls");
-          cout << "GRACIAS POR VISITARNOS!\n";\
+
+          freeMovie(&movie_list);
+          freeMovieCali(&calification_movies_list);
+          freeMovieRev(&review_movies_list);
+
+          freeSerie(&serie_list);
+
+          freeSerieCali(&calification_series_list);
+          freeSerieRev(&review_series_list);
+
+          freeSeasonRev(&review_seasons_list);
+          freeChapterRev(&review_chapter_list);
+
+          cout << "\nGRACIAS POR VISITARNOS!\n";
         }
         else cout << "VUELVE A INTENTAR!\n";
         break;

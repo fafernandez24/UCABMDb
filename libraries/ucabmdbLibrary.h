@@ -310,7 +310,7 @@ int mainMenu(){
   cout << "(4) Destacados\n";
   cout << "(0) Salir\n";
   cout << "========================================\n";
-  cout << "Ingresar opcion: ";
+  cout << ">> ";
   cin >> menu;
   cout << "========================================\n";
 
@@ -340,7 +340,7 @@ int caliAndReviewMenu(){
   cout << "(6) Reviews de los capitulos\n";
   cout << "(0) Salir\n";
   cout << "========================================\n";
-  cout << "Ingresar opcion: ";
+  cout << ">> ";
   cin >> menu;
   cout << "========================================\n";
 
@@ -740,3 +740,95 @@ void printSerie(Serie **serie_head, SerieCalification *cali_head, SerieReview *r
     }
   }
 }
+
+void freeMovie(Movie **movie_head){
+  if (*movie_head){
+    while (*movie_head){
+      Movie *aux = *movie_head;
+      *movie_head = aux->next_movie;
+      delete(aux);
+    }
+  }
+}
+
+void freeSeason(Season **season_head){
+  if (*season_head){
+    while (*season_head){
+      Season *aux = *season_head;
+      *season_head = aux->next_season;
+      delete(aux);
+    }
+  }
+}
+
+void freeSerie(Serie **serie_head){
+  if (*serie_head){
+    while (*serie_head){
+      Serie *aux = *serie_head;
+      *serie_head = aux->next_serie;
+      freeSeason(&aux->season_head);
+      delete(aux);
+    }
+  }
+}
+
+void freeMovieCali(MovieCalification **cali_head){
+  if (*cali_head){
+    while (*cali_head){
+      MovieCalification *aux = *cali_head;
+      *cali_head = aux->next_calification;
+      delete(aux);
+    }
+  }
+}
+
+void freeMovieRev(MovieReview **rev_head){
+  if (*rev_head){
+    while (*rev_head){
+      MovieReview *aux = *rev_head;
+      *rev_head = aux->next_review;
+      delete(aux);
+    }
+  }
+}
+
+void freeSerieCali(SerieCalification **cali_head){
+  if (*cali_head){
+    while (*cali_head){
+      SerieCalification *aux = *cali_head;
+      *cali_head = aux->next_calification;
+      delete(aux);
+    }
+  }
+}
+
+void freeSerieRev(SerieReview **rev_head){
+  if (*rev_head){
+    while (*rev_head){
+      SerieReview *aux = *rev_head;
+      *rev_head = aux->next_review;
+      delete(aux);
+    }
+  }
+}
+
+void freeSeasonRev(SeasonReview **rev_head){
+  if (*rev_head){
+    while (*rev_head){
+      SeasonReview *aux = *rev_head;
+      *rev_head = aux->next_review;
+      delete(aux);
+    }
+  }
+}
+
+void freeChapterRev(ChapterReview **rev_head){
+  if (*rev_head){
+    while (*rev_head){
+      ChapterReview *aux = *rev_head;
+      *rev_head = aux->next_review;
+      delete(aux);
+    }
+  }
+}
+

@@ -24,7 +24,7 @@ int outstandingMenu(){
   cout << "(4) Tops de capitulos\n";
   cout << "(0) Salir\n";
   cout << "========================================\n";
-  cout << "Ingresar opcion: ";
+  cout << ">> ";
   cin >> menu;
   cout << "========================================\n";
 
@@ -49,7 +49,7 @@ int outstandingMovieMenu(){
   cout << "(5) Peliculas con mas reviews en general\n";
   cout << "(0) Salir\n";
   cout << "========================================\n";
-  cout << "Ingresar opcion: ";
+  cout << ">> ";
   cin >> menu;
   cout << "========================================\n";
 
@@ -74,7 +74,7 @@ int outstandingSerieMenu(){
   cout << "(5) Series con mas reviews en general\n";
   cout << "(0) Salir\n";
   cout << "========================================\n";
-  cout << "Ingresar opcion: ";
+  cout << ">> ";
   cin >> menu;
   cout << "========================================\n";
 
@@ -96,7 +96,7 @@ int outstandingSeasonMenu(){
   cout << "(2) Temporadas con mas reviews en general\n";
   cout << "(0) Salir\n";
   cout << "========================================\n";
-  cout << "Ingresar opcion: ";
+  cout << ">> ";
   cin >> menu;
   cout << "========================================\n";
 
@@ -118,7 +118,7 @@ int outstandingChapterMenu(){
   cout << "(2) Capitulos con mas reviews en general\n";
   cout << "(0) Salir\n";
   cout << "========================================\n";
-  cout << "Ingresar opcion: ";
+  cout << ">> ";
   cin >> menu;
   cout << "========================================\n";
 
