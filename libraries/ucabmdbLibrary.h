@@ -751,6 +751,16 @@ void freeMovie(Movie **movie_head){
   }
 }
 
+void freeChapter(Chapter **chapter_head){
+  if (*chapter_head){
+    while (*chapter_head){
+      Chapter *aux = *chapter_head;
+      *chapter_head = aux->next_chapter;
+      delete(aux);
+    }
+  }
+}
+
 void freeSeason(Season **season_head){
   if (*season_head){
     while (*season_head){
@@ -765,6 +775,14 @@ void freeSerie(Serie **serie_head){
   if (*serie_head){
     while (*serie_head){
       Serie *aux = *serie_head;
+      Season *season = aux->season_head;
+
+      while (season){
+        freeChapter(&season->chapters_head);
+        season = season->next_season;
+      }
+      delete(season);
+
       *serie_head = aux->next_serie;
       freeSeason(&aux->season_head);
       delete(aux);
