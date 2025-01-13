@@ -177,7 +177,9 @@ void readSeasonsFile(Serie *serie_head){
 
       if (data_line == 2){
         
-        if (checkIntData(text) == true) season_premiere = stoi(text);
+        if (checkIntData(text) == true){
+          season_premiere = stoi(text);
+        }
         else{
           cout << "\nERROR. Dato invalidos en el archivo!\n";
           cout << "AVISO: No se cargaron los datos del archivo de temporadas!\n\n";
@@ -189,10 +191,18 @@ void readSeasonsFile(Serie *serie_head){
 
         if (checkIntSeasonId(text) == true){
 
+          if (findSerieById(serie_head, stoi(text))){
+
           season_id = stoi(text);
           Serie *serie = getSerieNodeById(serie_head, season_id);
 
           addSeason(&serie->season_head, season_name, season_premiere, season_id);
+          }
+          else{
+            cout << "\nERROR. Serie no encontrada!\n";
+            cout << "AVISO: No se cargaron los datos del archivo de temporadas!\n\n";
+            file.close();
+          }
         }
         else{
           cout << "\nERROR. Dato invalidos en el archivo!\n";

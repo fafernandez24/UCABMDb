@@ -18,6 +18,17 @@ bool findSerieByName(Serie *serie_head, string serie_name){
   return false;
 }
 
+bool findSerieById(Serie *serie_head, int id){
+  if (serie_head){
+    Serie *aux = serie_head;
+    while (aux){
+      if (aux->id == id) return true;
+      aux = aux->next_serie;
+    }
+  }
+  return false;
+}
+
 bool checkIntSerieId(string word){
 
     if (word.empty()) return false;
