@@ -1,117 +1,53 @@
 SEASONS
 
-Funny Summer
-2012
-200000
+Temporada 1
+2021
+300000
 
-Funny Spring
-2012
-200000
+Temporada 2
+2024
+300000
 
-Yellow Sugar
-2012
-200000
-
-End of vacations
-2012
-200000
-
-Hey Jessie
-2012
-200002
-
-Saga Saiyan
-2001
-200003
-
-Saga Freezer
-2002
-200003
-
-Saga Androide
+Libro 1: Agua
 2005
-200003
+300001
 
-Saga Majin Boo
-2010
-200003
+Libro 2: Tierra
+2006
+300001
 
-Black Star Dragon Ball Saga
-1996
-200004
-
-Baby Saga
-1996
-200004
-
-Super Android 17 Saga
-1997
-200004
+Libro 3: Fuego
+2008
+300001
 
 Temporada 1
-2021
-200005
+2013
+300002
 
 Temporada 2
-2024
-200005
+2017
+300002
 
-Temporada 1
-2024
-200006
+Temporada 3 Parte 1
+2018
+300002
 
-Temporada 1
-2024
-200007
+Temporada 3 Parte 2
+2019
+300002
 
-Temporada 1
-2024
-200008
+Temporada Final Parte 1
+2020
+300002
 
-Temporada 1
-2021
-200009
-
-Temporada 2
-2024
-200009
-
-Temporada 1
-2021
-200010
-
-Temporada 2
-2023
-200010
-
-Temporada 1
-2023
-200015
-
-Temporada 1
-2021
-800000
-
-Temporada 1
-2024
-200016
-
-Temporada 1
-2024
-200017
-
-Temporada 1
-2024
-150000
-
-Temporada 1
+Temporada Final Parte 2
 2022
-200019
+300002
 
-Temporada 1
+Temporada Final Capitulos Finales Parte 1
 2023
-200020
+300002
 
-Temporada 1
-2022
-190000
+Temporada Final Capitulos Finales Parte 2
+2023
+300002

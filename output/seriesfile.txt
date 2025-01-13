@@ -1,116 +1,16 @@
 SERIES
 
-Liv & Maddie
-2011
-Drama
-200000
-
-Masha & Bear
-2003
-Comedy
-200001
-
-Jessie
-2010
-Comedia
-200002
-
-Dragon Ball
-1994
-Anime
-200003
-
-GT
-1996
-Anime
-200004
-
-Arcane: League of Legends
+Arcane
 2021
 Aventura
-200005
-
-Fallout
-2024
-Supervivencia, Accion, Aventura, Drama
-200006
-
-Secret Level
-2024
-Acciï¿½n, Aventura, Animacion, Fantasia
-200007
-
-Dan da dan: Primer encuentro
-2024
-Anime
-200008
-
-El juego del calamar
-2021
-Korean Drama, Thriller, Misterio, Accion
-200009
-
-Loki
-2021
-Superhï¿½roes, Aventura, Accion, Fantasia
-200010
-
-Breaking Bad
-2008
-Crimen, Drama, Thriller
-200011
-
-Peaky Blinders
-2013
-Crimen, Drama, Gangster
-200012
-
-The boys
-2019
-Acciï¿½n, Comedia, Crimen, Superheroes, Drama
-200013
-
-Stranger Things
-2016
-Fantasï¿½a, Horror, Drama
-200014
-
-The Last of Us
-2023
-Drama
-200015
-
-Hawkeye
-2021
-Acciï¿½n, Superheroes
-800000
+300000
 
 Avatar: La Leyenda de Aang
-2024
-Acciï¿½n, Aventura, Drama
-200016
+2005
+Aventura
+300001
 
-Kaiju No.8
-2024
-Anime
-200017
-
-Sr. y Sra. Smith
-2024
-Acci¢n
-150000
-
-Peacemaker
-2022
-Acci¢n
-200019
-
-One Piece
-2023
-Acci¢n, Aventura
-200020
-
-Cyberpunk: Edgerunners
-2022
-Anime
-190000
+Shingeki No Kyojin
+2013
+Ciencia Ficción
+300002

@@ -40,6 +40,17 @@ bool findChapterBySerie(Serie *serie, string chapter_name){
   return false;
 }
 
+bool findChapterByNum(Chapter *chapter_head, int chapter_num){
+  if (chapter_head){
+    Chapter *aux = chapter_head;
+    while (aux){
+      if (aux->chapter_num == chapter_num) return true;
+      aux = aux->next_chapter;
+    }
+  }
+  return false;
+}
+
 bool checkIntChapterId(string word){
 
     if (word.empty()) return false;
@@ -521,8 +532,9 @@ void addChapterMenu(Chapter **chapter_head){
   cout << "========================================\n";
 
   bool chapter_exist = findChapterByName(*chapter_head, chapter_name);
+  bool chapter_exist2 = findChapterByNum(*chapter_head, chapter_num);
 
-  if (chapter_exist == false){
+  if (chapter_exist == false && chapter_exist2 == false){
     addChapter(&*chapter_head, chapter_name, chapter_premiere, chapter_time, chapter_num, chapter_id);
     cout << "AVISO: El capitulo se agrego correctamente!\n";
   }

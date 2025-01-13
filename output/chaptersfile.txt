@@ -1,1233 +1,137 @@
 CHAPTERS
 
-Dragon Ball
-Saga Androide
-De nuevo Dr. Gero
-1990
-22
-1
-516648
-
-GT
-Black Star Dragon Ball Saga
-Devastating Wish
-1996
-20
-1
-245245
-
-GT
-Super Android 17 Saga
-Curtain Call
-1997
-19
-1
-27587
-
-GT
-Super Android 17 Saga
-17 Times 2
-1997
-22
-4
-757575
-
-Arcane: League of Legends
+Arcane
 Temporada 1
-Bienvenido al patio de juegos
-2021
-43
-1
-200000
-
-Arcane: League of Legends
-Temporada 1
-Algunos misterios es mejor dejarlos sin resolver
-2021
-41
-2
-200001
-
-Arcane: League of Legends
-Temporada 1
-La violencia de base necesaria para el cambio
-2021
-44
-3
-200002
-
-Arcane: League of Legends
-Temporada 1
-Feliz d¡a del progreso
-2021
-40
-4
-200003
-
-Arcane: League of Legends
-Temporada 1
-Todo el mundo quiere ser mi enemigo
-2021
-40
-5
-200004
-
-Arcane: League of Legends
-Temporada 1
-Cuando estos muros se derrumben
+Bienvenido al terreno de juego
 2021
 42
-6
-200005
-
-Arcane: League of Legends
-Temporada 1
-El ni¤o salvador
-2021
-40
-7
-200006
-
-Arcane: League of Legends
-Temporada 1
-Aceite y agua
-2021
-40
-8
-200007
-
-Arcane: League of Legends
-Temporada 1
-El mounstro que creaste
-2021
-39
-9
-200008
-
-Arcane: League of Legends
-Temporada 2
-Pesada es la corona
-2024
-40
-1
-200009
-
-Arcane: League of Legends
-Temporada 2
-Mira como todo arde
-2024
-39
-2
-200010
-
-Arcane: League of Legends
-Temporada 2
-Por fin consegu¡ el nombre correcto
-2024
-40
-3
-200011
-
-Arcane: League of Legends
-Temporada 2
-Pinta la ciudad de azul
-2024
-39
-4
-200012
-
-Arcane: League of Legends
-Temporada 2
-Ampollas y lecho de roca
-2024
-42
-5
-200013
-
-Arcane: League of Legends
-Temporada 2
-El mensaje oculto en el patr¢n
-2024
-39
-6
-200014
-
-Arcane: League of Legends
-Temporada 2
-Finge que es la primera vez
-2024
-41
-7
-200015
-
-Arcane: League of Legends
-Temporada 2
-Matar es un ciclo
-2024
-40
-8
-200016
-
-Arcane: League of Legends
-Temporada 2
-La suciedad debajo de las u¤as
-2024
-50
-9
-200017
-
-Fallout
-Temporada 1
-El final
-2024
-74
-1
-100000
-
-Fallout
-Temporada 1
-El objetivo
-2024
-65
-2
-100001
-
-Fallout
-Temporada 1
-La cabeza
-2024
-57
-3
-100002
-
-Fallout
-Temporada 1
-Los necr¢fagos
-2024
-49
-4
-100003
-
-Fallout
-Temporada 1
-El pasado
-2024
-45
-5
-100004
-
-Fallout
-Temporada 1
-La trampa
-2024
-60
-6
-100005
-
-Fallout
-Temporada 1
-La radio
-2024
-61
-7
-100006
-
-Fallout
-Temporada 1
-El comienzo
-2024
-62
-8
-100007
-
-Secret Level
-Temporada 1
-Dungeons & Dragons: La cuna de la reina
-2024
-16
-1
-300000
-
-Secret Level
-Temporada 1
-Sifu: Se necesita una vida
-2024
-10
-2
-300001
-
-Secret Level
-Temporada 1
-Nuevo mundo: El rey de anta¤o y futuro
-2024
-15
-3
-300002
-
-Secret Level
-Temporada 1
-Torneo irreal: Xan
-2024
-19
-4
-300003
-
-Secret Level
-Temporada 1
-Warhammer 40000: Y no conocer n el miedo
-2024
-19
-5
-300004
-
-Secret Level
-Temporada 1
-PAC-MAN: C¡rculo
-2024
-11
-6
-300005
-
-Secret Level
-Temporada 1
-Fuego cruzado: Un buen conflicto
-2024
-19
-7
-300006
-
-Secret Level
-Temporada 1
-N£cleo Blindado: Gesti¢n de activos
-2024
-14
-8
-300007
-
-Secret Level
-Temporada 1
-Los mundos exteriores: La compa¤¡a que frecuentamos
-2024
-19
-9
-300008
-
-Secret Level
-Temporada 1
-Mega Man: Inicio
-2024
-8
-10
-300009
-
-Secret Level
-Temporada 1
-xodo: Odisea
-2024
-15
-11
-300010
-
-Secret Level
-Temporada 1
-Spelunky: Recuento
-2024
-8
-12
-300011
-
-Secret Level
-Temporada 1
-Concordia: La historia de lo implacable
-2024
-18
-13
-300012
-
-Secret Level
-Temporada 1
-El honor de los reyes: El camino de todas las cosas
-2024
-18
-14
-300013
-
-Secret Level
-Temporada 1
-El timepo de juego: Cumplimiento
-2024
-12
-15
-300014
-
-Dan da dan: Primer encuentro
-Temporada 1
-As¡ es como surge el amor y tal
-2024
-24
-1
-400000
-
-Dan da dan: Primer encuentro
-Temporada 1
-Eso es un extraterrestre ¨No?
-2024
-24
-2
-400001
-
-Dan da dan: Primer encuentro
-Temporada 1
-Batalla entre abuleas y eso
-2024
-24
-3
-400002
-
-Dan da dan: Primer encuentro
-Temporada 1
-Paliz¢n a la turboabuela
-2024
-24
-4
-400003
-
-Dan da dan: Primer encuentro
-Temporada 1
-¨D¢nde andar n las pelotas?
-2024
-24
-5
-400004
-
-Dan da dan: Primer encuentro
-Temporada 1
-Esa t¡a tiene tela
-2024
-24
-6
-400005
-
-Dan da dan: Primer encuentro
-Temporada 1
-Hacia un mundo mejor
-2024
-24
-7
-400006
-
-Dan da dan: Primer encuentro
-Temporada 1
-Hay algo que me tiene rayada
-2024
-24
-8
-400007
-
-Dan da dan: Primer encuentro
-Temporada 1
-­Fusi¢n!­El serpodemonio de Dover Nessie!
-2024
-24
-9
-400008
-
-Dan da dan: Primer encuentro
-Temporada 1
-Has visto la mutilaci¢n de ganado
-2024
-24
-10
-400009
-
-Dan da dan: Primer encuentro
-Temporada 1
-Primer amor
-2024
-24
-11
-400010
-
-Dan da dan: Primer encuentro
-Temporada 1
-De escapada a la casa encantada
-2024
-24
-12
-400011
-
-El juego del calamar
-Temporada 1
-Luz roja, luz verde
-2021
-59
 1
 500000
 
-El juego del calamar
+Arcane
 Temporada 1
-Infierno
+Algunos misterios es mejor no resolverlos
 2021
-62
+43
 2
 500001
 
-El juego del calamar
+Arcane
 Temporada 1
-El hombre del paraguas
+La violencia minima necesaria para el cambio
 2021
-54
+43
 3
 500002
 
-El juego del calamar
+Arcane
 Temporada 1
-No abandones el equipo
+Feliz Dia del Progreso!
 2021
-54
+43
 4
 500003
 
-El juego del calamar
+Arcane
 Temporada 1
-Un mundo justo 
+Todos quieren ser mis enemigos
 2021
-51
+43
 5
 500004
 
-El juego del calamar
+Arcane
 Temporada 1
-Gganbu
+Cuando estas paredes se derrumben
 2021
-61
+43
 6
 500005
 
-El juego del calamar
+Arcane
 Temporada 1
-Los VIP
+El pequenio salvador
 2021
-57
+43
 7
 500006
 
-El juego del calamar
+Arcane
 Temporada 1
-El l¡der
+Aceite y Agua
 2021
-32
+43
 8
 500007
 
-El juego del calamar
-Temporada 1
-Un d¡a de suerte
-2021
-55
-9
+Arcane
+Temporada 2
+El peso del liderazgo
+2024
+42
+1
 500008
 
-El juego del calamar
+Arcane
 Temporada 2
-Pan y loter¡a
+Ver como se quema todo
 2024
-65
-1
+42
+2
 500009
 
-El juego del calamar
+Arcane
 Temporada 2
-Fiesta de halloween
+Por fin pudiste pronunciar mi nombre
 2024
-51
-2
+43
+3
 500010
 
-El juego del calamar
+Arcane
 Temporada 2
-001
+Pintemos la Ciudad de Azul
 2024
-61
-3
+43
+4
 500011
 
-El juego del calamar
+Arcane
 Temporada 2
-Seis piernas
+Ampollas y Cimientos
 2024
-62
-4
+43
+5
 500012
 
-El juego del calamar
+Arcane
 Temporada 2
-Otro juego
+El Mensaje Oculto en el Patron
 2024
-76
-5
+43
+6
 500013
 
-El juego del calamar
+Arcane
 Temporada 2
-O X
+Finjamos que es la Primera Vez
 2024
-52
-6
+43
+7
 500014
 
-El juego del calamar
+Arcane
 Temporada 2
-Amigos o enemigos
+Matar es un Ciclo
 2024
-60
-7
+43
+8
 500015
 
-Loki
-Temporada 1
-Proposito glorioso 
-2021
-51
-1
-600000
-
-Loki
-Temporada 1
-La variante
-2021
-53
-2
-600001
-
-Loki
-Temporada 1
-Se lamento
-2021
-42
-3
-600002
-
-Loki
-Temporada 1
-El evento nexus
-2021
-48
-4
-600003
-
-Loki
-Temporada 1
-Viaje al misterio
-2021
-48
-5
-600004
-
-Loki
-Temporada 1
-Para siempre. Siempre
-2021
-45
-6
-600005
-
-Loki
+Arcane
 Temporada 2
-Ur¢boros
-2023
-45
-1
-600006
-
-Loki
-Temporada 2
-Rompiendo a Brad
-2023
-49
-2
-600007
-
-Loki
-Temporada 2
-1893
-2023
-54
-3
-600008
-
-Loki
-Temporada 2
-Coraz¢n de la TVA
-2023
-50
-4
-600009
-
-Loki
-Temporada 2
-Ciencia ficci¢n
-2023
-45
-5
-600010
-
-Loki
-Temporada 2
-Prop¢sito Glorioso
-2023
-56
-6
-600011
-
-The Last of Us
-Temporada 1
-Cuando est s perdido en la oscuridad
-2023
-81
-1
-700000
-
-The Last of Us
-Temporada 1
-Infectado
-2023
-53
-2
-700001
-
-The Last of Us
-Temporada 1
-Largo, largo tiempo
-2023
-76
-3
-700002
-
-The Last of Us
-Temporada 1
-Por favor, toma mi mano
-2023
-45
-4
-700003
-
-The Last of Us
-Temporada 1
-Resistir y sobrevivir
-2023
-59
-5
-700004
-
-The Last of Us
-Temporada 1
-Familiares
-2023
-59
-6
-700005
-
-The Last of Us
-Temporada 1
-Dejado atr s
-2023
-55
-7
-700006
-
-The Last of Us
-Temporada 1
-Cuando estamos en necesidad
-2023
-50
-8
-700007
-
-The Last of Us
-Temporada 1
-Busca la luz
-2023
+La Mugre Bajo tus Unias
+2024
 43
 9
-700008
-
-Hawkeye
-Temporada 1
-Nunca conozcas a tus h‚roes
-2023
-47
-1
-900000
-
-Hawkeye
-Temporada 1
-Al escondite
-2023
-49
-2
-900001
-
-Hawkeye
-Temporada 1
-Ecos
-2023
-42
-3
-900002
-
-Hawkeye
-Temporada 1
-Socios, Estoy en lo cierto?
-2023
-39
-4
-900003
-
-Hawkeye
-Temporada 1
-Ronin
-2023
-44
-5
-900004
-
-Hawkeye
-Temporada 1
-Entonces, ¨Esto es navidad?
-2023
-61
-6
-900005
-
-Avatar: La Leyenda de Aang
-Temporada 1
-Aang
-2024
-63
-1
-110000
-
-Avatar: La Leyenda de Aang
-Temporada 1
-Guerreros
-2024
-48
-2
-110001
-
-Avatar: La Leyenda de Aang
-Temporada 1
-Omashu
-2024
-52
-3
-110002
-
-Avatar: La Leyenda de Aang
-Temporada 1
-Hacia la oscuridad
-2024
-56
-4
-110003
-
-Avatar: La Leyenda de Aang
-Temporada 1
-El viaje de Chihiro
-2024
-53
-5
-110004
-
-Avatar: La Leyenda de Aang
-Temporada 1
-M scaras
-2024
-57
-6
-110005
-
-Avatar: La Leyenda de Aang
-Temporada 1
-El norte
-2024
-47
-7
-110006
-
-Avatar: La Leyenda de Aang
-Temporada 1
-Leyendas
-2024
-58
-8
-110007
-
-Kaiju No.8
-Temporada 1
-El hombre que se convirti¢ en Kaiju
-2024
-24
-1
-120000
-
-Kaiju No.8
-Temporada 1
-El kaiju que derrota a kaiju
-2024
-24
-2
-120001
-
-Kaiju No.8
-Temporada 1
-Combate de revancha
-2024
-24
-3
-120002
-
-Kaiju No.8
-Temporada 1
-Fortaleza 9.8
-2024
-24
-4
-120003
-
-Kaiju No.8
-Temporada 1
-­Uni‚ndose!
-2024
-24
-5
-120004
-
-Kaiju No.8
-Temporada 1
-Operaci¢n de neutralizacion de Sagamihara al amanecer
-2024
-24
-6
-120005
-
-Kaiju No.8
-Temporada 1
-Kaiju No.9
-2024
-24
-7
-120006
-
-Kaiju No.8
-Temporada 1
-Bienvenido a la fortaleza de defensa
-2024
-24
-8
-120007
-
-Kaiju No.8
-Temporada 1
-Incursion en la base de Tachikawa
-2024
-24
-9
-120008
-
-Kaiju No.8
-Temporada 1
-Secreto revelado
-2024
-24
-10
-120009
-
-Kaiju No.8
-Temporada 1
-Kaiju No.8 Capturado
-2024
-24
-11
-120010
-
-Kaiju No.8
-Temporada 1
-Kafka Hibino
-2024
-24
-12
-120011
-
-Sr. y Sra. Smith
-Temporada 1
-Primera cita
-2024
-58
-1
-160000
-
-Sr. y Sra. Smith
-Temporada 1
-Segunda cita
-2024
-45
-2
-160001
-
-Sr. y Sra. Smith
-Temporada 1
-Primeras vacaciones
-2024
-46
-3
-160002
-
-Sr. y Sra. Smith
-Temporada 1
-Cita doble
-2024
-45
-4
-160003
-
-Sr. y Sra. Smith
-Temporada 1
-Quieres tener hijos?
-2024
-48
-5
-160004
-
-Sr. y Sra. Smith
-Temporada 1
-Terapia de pereja (Desnuda y asustada)
-2024
-44
-6
-160005
-
-Sr. y Sra. Smith
-Temporada 1
-Infidelidad
-2024
-42
-7
-160006
-
-Sr. y Sra. Smith
-Temporada 1
-Una ruptura
-2024
-63
-8
-160007
-
-Peacemaker
-Temporada 1
-Un remolino completamente nuevo
-2022
-46
-1
-170000
-
-Peacemaker
-Temporada 1
-Mejores amigos, para nunca
-2022
-40
-2
-170001
-
-Peacemaker
-Temporada 1
-Mejor goff muerto
-2022
-39
-3
-170002
-
-Peacemaker
-Temporada 1
-El Choad menos transitado
-2022
-46
-4
-170003
-
-Peacemaker
-Temporada 1
-Mono Dory
-2022
-42
-5
-170004
-
-Peacemaker
-Temporada 1
-Murm despues de leer
-2022
-46
-6
-170005
-
-Peacemaker
-Temporada 1
-Deten al dragon y mi corazon esta cerca
-2022
-39
-7
-170006
-
-Peacemaker
-Temporada 1
-Es vaca o nunca
-2022
-45
-8
-170007
-
-One Piece
-Temporada 1
-Romance al amanecer
-2023
-64
-1
-180000
-
-One Piece
-Temporada 1
-El hombre del sombrero de paja
-2023
-55
-2
-180001
-
-One Piece
-Temporada 1
-No cuentes cuentos
-2023
-58
-3
-180002
-
-One Piece
-Temporada 1
-En la busqueda del One Piece
-2023
-62
-4
-180003
-
-One Piece
-Temporada 1
-­Come en Baratie!
-2023
-51
-5
-180004
-
-One Piece
-Temporada 1
-El chef y el chico de los que haceres domesticos
-2023
-54
-6
-180005
-
-One Piece
-Temporada 1
-La chica con el tatuaje del pez sierra
-2023
-58
-7
-180006
-
-One Piece
-Temporada 1
-Lo peor en el este
-2023
-49
-8
-180007
-
-Cyberpunk: Edgerunners
-Temporada 1
-Te decepcion‚ 
-2022
-24
-1
-210000
-
-Cyberpunk: Edgerunners
-Temporada 1
-Como un ni¤o
-2022
-24
-2
-210001
-
-Cyberpunk: Edgerunners
-Temporada 1
-Criminal Tranquilo
-2022
-24
-3
-210002
-
-Cyberpunk: Edgerunners
-Temporada 1
-Eres afortunado
-2022
-24
-4
-210003
-
-Cyberpunk: Edgerunners
-Temporada 1
-Todas las miradas puestas en mi
-2022
-24
-5
-210004
-
-Cyberpunk: Edgerunners
-Temporada 1
-Chica en llamas
-2022
-24
-6
-210005
-
-Cyberpunk: Edgerunners
-Temporada 1
-M s Fuerte
-2022
-24
-7
-210006
-
-Cyberpunk: Edgerunners
-Temporada 1
-Permanecer
-2022
-24
-8
-210007
-
-Cyberpunk: Edgerunners
-Temporada 1
-Humanidad
-2022
-25
-9
-210008
-
-Cyberpunk: Edgerunners
-Temporada 1
-Mi luna mi hombre
-2022
-26
-10
-210009
+500016

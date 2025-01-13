@@ -39,8 +39,8 @@ int main(){
   readSerieCaliFile(&calification_series_list, serie_list, users_list);
   readSerieReviewFile(&review_series_list, serie_list, users_list);
   readSeasonReviewFile(&review_seasons_list, serie_list, users_list);
-  readChapterReviewFile(&review_chapter_list, serie_list, users_list);
 
+  readChapterReviewFile(&review_chapter_list, serie_list, users_list);
 
   int main_option = -1;
   while (main_option != 0){
