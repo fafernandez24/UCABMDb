@@ -40,7 +40,7 @@ bool findChapterBySerie(Serie *serie, string chapter_name){
   return false;
 }
 
-bool findChapterByNum(Chapter *chapter_head, int chapter_num){
+bool findChapterByNum(Chapter *chapter_head, float chapter_num){
   if (chapter_head){
     Chapter *aux = chapter_head;
     while (aux){
@@ -131,7 +131,7 @@ int getChapterTime(){
   return stoi(chapter_time);
 }
 
-int getChapterNum(){
+float getChapterNum(){
 
   string chapter_id;
   bool check_num = false;
@@ -167,7 +167,7 @@ int getChapterId(){
   return stoi(chapter_id);
 }
 
-Chapter *createChapter(string chapter_name, int chapter_premiere, int chapter_time, int chapter_num, int id){
+Chapter *createChapter(string chapter_name, int chapter_premiere, int chapter_time, float chapter_num, int id){
 
     Chapter *new_chapter = new Chapter;
 
@@ -232,7 +232,7 @@ Chapter *getChapterNodeBySerie(Serie *serie, string chapter_name){
   return NULL;
 }
 
-void addChapter(Chapter **chapter_head, string chapter_name, int chapter_premiere, int chapter_time, int chapter_num, int id){
+void addChapter(Chapter **chapter_head, string chapter_name, int chapter_premiere, int chapter_time, float chapter_num, int id){
 
     Chapter *new_chapter = createChapter(chapter_name, chapter_premiere, chapter_time, chapter_num, id);
     Chapter *aux = *chapter_head;
@@ -323,7 +323,8 @@ void readChaptersFile(Serie *serie_head){
 
   ifstream file;
   string text, serie_name, season_name, chapter_name;
-  int data_line = 0, chapter_premiere, chapter_time, chapter_num,chapter_id;
+  int data_line = 0, chapter_premiere, chapter_time,chapter_id;
+  float chapter_num;
   Serie *aux = serie_head;
   Season *aux2 = NULL;
 
@@ -392,16 +393,8 @@ void readChaptersFile(Serie *serie_head){
             }
         }
 
-        if (data_line == 6){
-            
-            if (checkIntData(text) == true) chapter_num = stoi(text);
-            else{
-                cout << "\nERROR. Dato invalidos en el archivo!\n";
-                cout << "AVISO: No se cargaron los datos del archivo de capitulos!\n\n";
-                file.close();
-            }
-        }
-
+        if (data_line == 6) chapter_num = stof(text);
+        
         if (data_line == 7){
 
             if (checkIntChapterId(text) == true){
@@ -527,7 +520,7 @@ void addChapterMenu(Chapter **chapter_head){
   string chapter_name = getChapterName();
   int chapter_premiere = getChapterPremiere();
   int chapter_time = getChapterTime();
-  int chapter_num = getChapterNum();
+  float chapter_num = getChapterNum();
   int chapter_id = getChapterId();
   cout << "========================================\n";
 

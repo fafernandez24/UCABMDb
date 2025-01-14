@@ -41,7 +41,7 @@ struct Chapter{
     string chapter_name;
     int chapter_premiere;
     int chapter_time;
-    int chapter_num;
+    float chapter_num;
     int id;
 
     Chapter *next_chapter;
