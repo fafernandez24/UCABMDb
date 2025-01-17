@@ -296,7 +296,7 @@ int seasonMenu(){
   cout << "(2) Agregar temporada\n";
   cout << "(3) Eliminar temporada\n";
   cout << "(4) Buscar temporada\n";
-  cout << "(5) Calificaciones de las temporada\n";
+  cout << "(5) Reviews de las temporadas\n";
   cout << "(0) Regresar al menu de series\n";
   cout << "========================================" << endl;
   cout << "Ingresar opcion: ";

@@ -493,7 +493,7 @@ int chapterMenu(){
     cout << "(2) Agregar capitulo\n";
     cout << "(3) Eliminar capitulo\n";
     cout << "(4) Buscar capitulo\n";
-    cout << "(5) Calificaciones de los capitulos\n";
+    cout << "(5) Reviews de los capitulos\n";
     cout << "(0) Regresar al menu de temporadas\n";
     cout << "========================================" << endl;
     cout << "Ingresar opcion: ";
