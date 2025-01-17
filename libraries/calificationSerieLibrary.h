@@ -265,7 +265,15 @@ void readSerieCaliFile(SerieCalification **cali_head, Serie *serie_head, Users *
 
             if (data_line == 2) user = getUsersNode(user_head, text);
 
-            if (data_line == 3) calification = stof(text);
+            if (data_line == 3){
+                
+                if (checkFloatCalification(text) == true) calification = stof(text);
+                else{
+                    cout << "\nERROR. Dato invalidos en el archivo!\n";
+                    cout << "AVISO: No se cargaron los datos del archivo de calificaciones en series!\n\n";
+                    file.close();
+                }
+            }
 
             if (data_line == 4){
                 if (checkIntSerieCalificationId(text) == true){
