@@ -7,20 +7,6 @@
 
 using namespace std;
 
-float getCalification(){
-    float cali = 0;
-    do{
-        cout << "\tCalificacion: ";
-        cin >> cali;
-
-        if (cali < 0 || cali > 5){
-            cout << "ERROR. Ingresar un numer entre 0 y 5!\n";
-        }
-
-    } while (cali < 0 || cali > 5);
-    return cali;
-}
-
 bool checkIntMovieCalificationId(string word){
 
     if (word.empty()) return false;
@@ -34,17 +20,35 @@ bool checkIntMovieCalificationId(string word){
     return false;
 }
 
-bool checkFloatMovieCalification(string word){
+bool checkFloatCalification(string word){
 
     if (word.empty()) return false;
 
     for (sizeType n = 0; n < word.length(); ++n){
-        if (word[n] < '0' || word[n] > '9') return false;
+        if ((word[n] != '.') && (word[n] < '0' || word[n] > '9')) return false;
     }
 
-    if (stof(word) >= 0 && stof(word) <= 9999999) return true;
+    if (stof(word) >= 0 && stof(word) <= 5) return true;
 
     return false;
+}
+
+float getCalification(){
+    string cali = "";
+    float num_cali = -1;
+    do{
+        cout << "\tCalificacion: ";
+        cin >> cali;
+
+        if (checkFloatCalification(cali) == true){
+            num_cali = stof(cali);
+        }
+        else{
+            cout << "ERROR. Ingresar un numer entre 0 y 5!\n";
+        }
+
+    } while (num_cali < 0 || num_cali > 5);
+    return num_cali;
 }
 
 MovieCalification *getMovieCalificationNode(MovieCalification *cali_head, string movie_name, string user_email){
@@ -281,7 +285,15 @@ void readMovieCaliFile(MovieCalification **cali_head, Movie *movie_head, Users *
 
             if (data_line == 2) user = getUsersNode(user_head, text);
 
-            if (data_line == 3) calification = stof(text);
+            if (data_line == 3){
+                
+                if (checkFloatCalification(text) == true) calification = stof(text);
+                else{
+                    cout << "\nERROR. Dato invalidos en el archivo!\n";
+                    cout << "AVISO: No se cargaron los datos del archivo de calificaciones en peliculas!\n\n";
+                    file.close();
+                }
+            }
 
             if (data_line == 4){
                 if (checkIntMovieCalificationId(text) == true){
