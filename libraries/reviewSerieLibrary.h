@@ -75,11 +75,20 @@ int countNumSerieReviewInUser(SerieReview *review_head, string user_email){
 /* Funcion para obtener una reseña */
 string getSerieReview(){
 
-  string review;
-  cin.ignore();
-  cout << "\tReview: ";
-  getline(cin, review);
-  return review;
+    string review;
+    bool bol = false;
+    
+    while (bol == false){
+
+        cin.ignore();
+        cout << "\tReview: ";
+        getline(cin, review);
+
+        bol = checkReviewLength(review);
+        
+        if (bol == false) cout << "ERROR. Ingresar un maximo de 250 caracteres!\n";
+    }
+    return review;
 } 
 
 SerieReview *createSerieReview(string review, int id, Serie *serie, Users *user){

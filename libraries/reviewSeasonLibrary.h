@@ -23,11 +23,20 @@ bool checkIntSeasonReviewId(string word){
 /* Funcion para obtener una reseña */
 string getSeasonReview(){
 
-  string review;
-  cin.ignore();
-  cout << "\tReview: ";
-  getline(cin, review);
-  return review;
+    string review;
+    bool bol = false;
+    
+    while (bol == false){
+
+        cin.ignore();
+        cout << "\tReview: ";
+        getline(cin, review);
+
+        bol = checkReviewLength(review);
+        
+        if (bol == false) cout << "ERROR. Ingresar un maximo de 250 caracteres!\n";
+    }
+    return review;
 } 
 
 SeasonReview *getSeasonReviewNode(SeasonReview *review_head, string season_name, string user_email){
